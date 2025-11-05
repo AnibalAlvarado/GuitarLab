@@ -1,0 +1,693 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="Model1TargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="RolSet" EntityType="Model1.Rol" />
+          <EntitySet Name="UserSet" EntityType="Model1.User" />
+          <EntitySet Name="PersonSet" EntityType="Model1.Person" />
+          <EntitySet Name="PermissionSet" EntityType="Model1.Permission" />
+          <EntitySet Name="RolFormPermissionSet" EntityType="Model1.RolFormPermission" />
+          <EntitySet Name="RolUserSet" EntityType="Model1.RolUser" />
+          <AssociationSet Name="UserRolUser" Association="Model1.UserRolUser">
+            <End EntitySet="UserSet" Role="User" />
+            <End EntitySet="RolUserSet" Role="RolUser" />
+          </AssociationSet>
+          <AssociationSet Name="PersonUser" Association="Model1.PersonUser">
+            <End EntitySet="PersonSet" Role="Person" />
+            <End EntitySet="UserSet" Role="User" />
+          </AssociationSet>
+          <EntitySet Name="PondSet" EntityType="Model1.Pond" />
+          <EntitySet Name="TaskSet" EntityType="Model1.Task" />
+          <EntitySet Name="MeasurementsSet" EntityType="Model1.Measurements" />
+          <AssociationSet Name="PondMeasurements" Association="Model1.PondMeasurements">
+            <End EntitySet="PondSet" Role="Pond" />
+            <End EntitySet="MeasurementsSet" Role="Measurements" />
+          </AssociationSet>
+          <EntitySet Name="ObservationSet1" EntityType="Model1.Observation" />
+          <EntitySet Name="ProductionCycleSet" EntityType="Model1.ProductionCycle" />
+          <AssociationSet Name="PondProductionCycle" Association="Model1.PondProductionCycle">
+            <End EntitySet="PondSet" Role="Pond" />
+            <End EntitySet="ProductionCycleSet" Role="ProductionCycle" />
+          </AssociationSet>
+          <EntitySet Name="FeedingSet" EntityType="Model1.Feeding" />
+          <AssociationSet Name="ProductionCycleFeeding" Association="Model1.ProductionCycleFeeding">
+            <End EntitySet="ProductionCycleSet" Role="ProductionCycle" />
+            <End EntitySet="FeedingSet" Role="Feeding" />
+          </AssociationSet>
+          <EntitySet Name="MortalitySet" EntityType="Model1.Mortality" />
+          <AssociationSet Name="ProductionCycleMortality" Association="Model1.ProductionCycleMortality">
+            <End EntitySet="ProductionCycleSet" Role="ProductionCycle" />
+            <End EntitySet="MortalitySet" Role="Mortality" />
+          </AssociationSet>
+          <EntitySet Name="BiometricsSet1" EntityType="Model1.Biometrics" />
+          <AssociationSet Name="ProductionCyclebiometrics" Association="Model1.ProductionCyclebiometrics">
+            <End EntitySet="ProductionCycleSet" Role="ProductionCycle" />
+            <End EntitySet="BiometricsSet1" Role="biometrics" />
+          </AssociationSet>
+          <EntitySet Name="NotificationSet" EntityType="Model1.Notification" />
+          <AssociationSet Name="PondNotification" Association="Model1.PondNotification">
+            <End EntitySet="PondSet" Role="Pond" />
+            <End EntitySet="NotificationSet" Role="Notification" />
+          </AssociationSet>
+          <EntitySet Name="TaskPondSet" EntityType="Model1.TaskPond" />
+          <AssociationSet Name="PondTaskPond" Association="Model1.PondTaskPond">
+            <End EntitySet="PondSet" Role="Pond" />
+            <End EntitySet="TaskPondSet" Role="TaskPond" />
+          </AssociationSet>
+          <AssociationSet Name="TaskTaskPond" Association="Model1.TaskTaskPond">
+            <End EntitySet="TaskSet" Role="Task" />
+            <End EntitySet="TaskPondSet" Role="TaskPond" />
+          </AssociationSet>
+          <EntitySet Name="PondUserSet" EntityType="Model1.PondUser" />
+          <AssociationSet Name="UserPondUser" Association="Model1.UserPondUser">
+            <End EntitySet="UserSet" Role="User" />
+            <End EntitySet="PondUserSet" Role="PondUser" />
+          </AssociationSet>
+          <AssociationSet Name="PondPondUser" Association="Model1.PondPondUser">
+            <End EntitySet="PondSet" Role="Pond" />
+            <End EntitySet="PondUserSet" Role="PondUser" />
+          </AssociationSet>
+          <EntitySet Name="ModuleSet" EntityType="Model1.Module" />
+          <EntitySet Name="ModuleFormSet" EntityType="Model1.ModuleForm" />
+          <EntitySet Name="FormSet" EntityType="Model1.Form" />
+          <AssociationSet Name="ModuleModuleForm" Association="Model1.ModuleModuleForm">
+            <End EntitySet="ModuleSet" Role="Module" />
+            <End EntitySet="ModuleFormSet" Role="ModuleForm" />
+          </AssociationSet>
+          <AssociationSet Name="FormModuleForm" Association="Model1.FormModuleForm">
+            <End EntitySet="FormSet" Role="Form" />
+            <End EntitySet="ModuleFormSet" Role="ModuleForm" />
+          </AssociationSet>
+          <AssociationSet Name="RolRolFormPermission" Association="Model1.RolRolFormPermission">
+            <End Role="Rol" EntitySet="RolSet" />
+            <End Role="RolFormPermission" EntitySet="RolFormPermissionSet" />
+          </AssociationSet>
+          <AssociationSet Name="PermissionRolFormPermission" Association="Model1.PermissionRolFormPermission">
+            <End Role="Permission" EntitySet="PermissionSet" />
+            <End Role="RolFormPermission" EntitySet="RolFormPermissionSet" />
+          </AssociationSet>
+          <AssociationSet Name="FormRolFormPermission" Association="Model1.FormRolFormPermission">
+            <End Role="Form" EntitySet="FormSet" />
+            <End Role="RolFormPermission" EntitySet="RolFormPermissionSet" />
+          </AssociationSet>
+          <AssociationSet Name="RolRolUser" Association="Model1.RolRolUser">
+            <End Role="Rol" EntitySet="RolSet" />
+            <End Role="RolUser" EntitySet="RolUserSet" />
+          </AssociationSet>
+          <EntitySet Name="SensorSet" EntityType="Model1.Sensor" />
+          <EntitySet Name="SensorDataSet" EntityType="Model1.SensorData" />
+          <EntitySet Name="AlertSet" EntityType="Model1.Alert" />
+          <AssociationSet Name="PondSensonr" Association="Model1.PondSensonr">
+            <End Role="Pond" EntitySet="PondSet" />
+            <End Role="Sensonr" EntitySet="SensorSet" />
+          </AssociationSet>
+          <AssociationSet Name="SensorSensorData" Association="Model1.SensorSensorData">
+            <End Role="Sensor" EntitySet="SensorSet" />
+            <End Role="SensorData" EntitySet="SensorDataSet" />
+          </AssociationSet>
+          <AssociationSet Name="SensorAlert" Association="Model1.SensorAlert">
+            <End Role="Sensor" EntitySet="SensorSet" />
+            <End Role="Alert" EntitySet="AlertSet" />
+          </AssociationSet>
+          <AssociationSet Name="PondObservation" Association="Model1.PondObservation">
+            <End Role="Pond" EntitySet="PondSet" />
+            <End Role="Observation" EntitySet="ObservationSet1" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="RolFormPermission" Relationship="Model1.RolRolFormPermission" FromRole="Rol" ToRole="RolFormPermission" />
+          <NavigationProperty Name="RolUser" Relationship="Model1.RolRolUser" FromRole="Rol" ToRole="RolUser" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="RolUser" Relationship="Model1.UserRolUser" FromRole="User" ToRole="RolUser" />
+          <NavigationProperty Name="IdPerson" Relationship="Model1.PersonUser" FromRole="User" ToRole="Person" />
+          <NavigationProperty Name="PondUser" Relationship="Model1.UserPondUser" FromRole="User" ToRole="PondUser" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" />
+          <Property Name="LastName" Type="String" Nullable="false" />
+          <Property Name="Phone" Type="String" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Model1.PersonUser" FromRole="Person" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Permission">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <NavigationProperty Name="RolFormPermission" Relationship="Model1.PermissionRolFormPermission" FromRole="Permission" ToRole="RolFormPermission" />
+        </EntityType>
+        <EntityType Name="RolFormPermission">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="IdRol" Relationship="Model1.RolRolFormPermission" FromRole="RolFormPermission" ToRole="Rol" />
+          <Property Name="RolId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="IdPermission" Relationship="Model1.PermissionRolFormPermission" FromRole="RolFormPermission" ToRole="Permission" />
+          <Property Name="PermissionId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="IdForm" Relationship="Model1.FormRolFormPermission" FromRole="RolFormPermission" ToRole="Form" />
+          <Property Name="FormId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RolUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="IdUser" Relationship="Model1.UserRolUser" FromRole="RolUser" ToRole="User" />
+          <Property Name="UserId" Nullable="false" Type="Int32" />
+          <NavigationProperty Name="IdRol" Relationship="Model1.RolRolUser" FromRole="RolUser" ToRole="Rol" />
+          <Property Name="RolId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="UserRolUser">
+          <End Type="Model1.User" Multiplicity="1" Role="User" />
+          <End Type="Model1.RolUser" Multiplicity="*" Role="RolUser" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RolUser">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PersonUser">
+          <End Type="Model1.Person" Multiplicity="1" Role="Person" />
+          <End Type="Model1.User" Multiplicity="1" Role="User" />
+        </Association>
+        <EntityType Name="Pond">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Capacity" Type="String" Nullable="false" />
+          <Property Name="Depth" Type="String" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Measurements" Relationship="Model1.PondMeasurements" FromRole="Pond" ToRole="Measurements" />
+          <NavigationProperty Name="ProductionCycle" Relationship="Model1.PondProductionCycle" FromRole="Pond" ToRole="ProductionCycle" />
+          <NavigationProperty Name="Notification" Relationship="Model1.PondNotification" FromRole="Pond" ToRole="Notification" />
+          <NavigationProperty Name="TaskPond" Relationship="Model1.PondTaskPond" FromRole="Pond" ToRole="TaskPond" />
+          <NavigationProperty Name="PondUser" Relationship="Model1.PondPondUser" FromRole="Pond" ToRole="PondUser" />
+          <NavigationProperty Name="Sensonr" Relationship="Model1.PondSensonr" FromRole="Pond" ToRole="Sensonr" />
+          <NavigationProperty Name="Observation" Relationship="Model1.PondObservation" FromRole="Pond" ToRole="Observation" />
+        </EntityType>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <Property Name="Active" Type="String" Nullable="false" />
+          <Property Name="Priority" Type="String" Nullable="false" />
+          <Property Name="AssignedDate" Type="DateTime" Nullable="false" />
+          <Property Name="ExpirationDate" Type="DateTime" Nullable="false" />
+          <Property Name="DateCompleted" Type="Boolean" Nullable="false" />
+          <Property Name="PondId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TaskPond" Relationship="Model1.TaskTaskPond" FromRole="Task" ToRole="TaskPond" />
+        </EntityType>
+        <EntityType Name="Measurements">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="Temperature" Type="Decimal" Nullable="false" />
+          <Property Name="Ph" Type="Decimal" Nullable="false" />
+          <Property Name="Oxygen" Type="Decimal" Nullable="false" />
+          <NavigationProperty Name="IdPond" Relationship="Model1.PondMeasurements" FromRole="Measurements" ToRole="Pond" />
+          <Property Name="PondId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="PondMeasurements">
+          <End Type="Model1.Pond" Multiplicity="1" Role="Pond" />
+          <End Type="Model1.Measurements" Multiplicity="*" Role="Measurements" />
+          <ReferentialConstraint>
+            <Principal Role="Pond">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Measurements">
+              <PropertyRef Name="PondId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Observation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="IdPond" Relationship="Model1.PondObservation" FromRole="Observation" ToRole="Pond" />
+          <Property Name="PondId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductionCycle">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" />
+          <Property Name="InitialAmount" Type="Int32" Nullable="false" />
+          <Property Name="Species" Type="String" Nullable="false" />
+          <Property Name="TargetWeight" Type="Decimal" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="IdPond" Relationship="Model1.PondProductionCycle" FromRole="ProductionCycle" ToRole="Pond" />
+          <Property Name="PondId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Feeding" Relationship="Model1.ProductionCycleFeeding" FromRole="ProductionCycle" ToRole="Feeding" />
+          <NavigationProperty Name="Mortality" Relationship="Model1.ProductionCycleMortality" FromRole="ProductionCycle" ToRole="Mortality" />
+          <NavigationProperty Name="biometrics" Relationship="Model1.ProductionCyclebiometrics" FromRole="ProductionCycle" ToRole="biometrics" />
+        </EntityType>
+        <Association Name="PondProductionCycle">
+          <End Type="Model1.Pond" Multiplicity="1" Role="Pond" />
+          <End Type="Model1.ProductionCycle" Multiplicity="*" Role="ProductionCycle" />
+          <ReferentialConstraint>
+            <Principal Role="Pond">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductionCycle">
+              <PropertyRef Name="PondId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Feeding">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateTime" Type="DateTime" Nullable="false" />
+          <Property Name="AmountFood" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="IdProductionCycle" Relationship="Model1.ProductionCycleFeeding" FromRole="Feeding" ToRole="ProductionCycle" />
+          <Property Name="ProductionCycleId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="ProductionCycleFeeding">
+          <End Type="Model1.ProductionCycle" Multiplicity="1" Role="ProductionCycle" />
+          <End Type="Model1.Feeding" Multiplicity="*" Role="Feeding" />
+          <ReferentialConstraint>
+            <Principal Role="ProductionCycle">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Feeding">
+              <PropertyRef Name="ProductionCycleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Mortality">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateTime" Type="DateTime" Nullable="false" />
+          <Property Name="QuantityFish" Type="String" Nullable="false" />
+          <Property Name="Cause" Type="String" Nullable="false" />
+          <NavigationProperty Name="IdProductionCycle" Relationship="Model1.ProductionCycleMortality" FromRole="Mortality" ToRole="ProductionCycle" />
+          <Property Name="ProductionCycleId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="ProductionCycleMortality">
+          <End Type="Model1.ProductionCycle" Multiplicity="1" Role="ProductionCycle" />
+          <End Type="Model1.Mortality" Multiplicity="*" Role="Mortality" />
+          <ReferentialConstraint>
+            <Principal Role="ProductionCycle">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mortality">
+              <PropertyRef Name="ProductionCycleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Biometrics">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="AverageWeight" Type="Decimal" Nullable="false" />
+          <Property Name="AverageLength" Type="Decimal" Nullable="false" />
+          <Property Name="SampleQuantity" Type="Decimal" Nullable="false" />
+          <NavigationProperty Name="IdProductionCycle" Relationship="Model1.ProductionCyclebiometrics" FromRole="biometrics" ToRole="ProductionCycle" />
+          <Property Name="ProductionCycleId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="ProductionCyclebiometrics">
+          <End Type="Model1.ProductionCycle" Multiplicity="1" Role="ProductionCycle" />
+          <End Type="Model1.Biometrics" Multiplicity="*" Role="biometrics" />
+          <ReferentialConstraint>
+            <Principal Role="ProductionCycle">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="biometrics">
+              <PropertyRef Name="ProductionCycleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <Property Name="EmergencyType" Type="String" Nullable="false" />
+          <Property Name="DateTime" Type="DateTime" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="CompletedDate" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="IdPond" Relationship="Model1.PondNotification" FromRole="Notification" ToRole="Pond" />
+          <Property Name="PondId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="PondNotification">
+          <End Type="Model1.Pond" Multiplicity="1" Role="Pond" />
+          <End Type="Model1.Notification" Multiplicity="*" Role="Notification" />
+          <ReferentialConstraint>
+            <Principal Role="Pond">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="PondId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TaskPond">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="IdPond" Relationship="Model1.PondTaskPond" FromRole="TaskPond" ToRole="Pond" />
+          <Property Name="PondId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="IdTask" Relationship="Model1.TaskTaskPond" FromRole="TaskPond" ToRole="Task" />
+          <Property Name="TaskId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="PondTaskPond">
+          <End Type="Model1.Pond" Multiplicity="1" Role="Pond" />
+          <End Type="Model1.TaskPond" Multiplicity="*" Role="TaskPond" />
+          <ReferentialConstraint>
+            <Principal Role="Pond">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TaskPond">
+              <PropertyRef Name="PondId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TaskTaskPond">
+          <End Type="Model1.Task" Multiplicity="1" Role="Task" />
+          <End Type="Model1.TaskPond" Multiplicity="*" Role="TaskPond" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TaskPond">
+              <PropertyRef Name="TaskId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PondUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="IdUser" Relationship="Model1.UserPondUser" FromRole="PondUser" ToRole="User" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="IdPond" Relationship="Model1.PondPondUser" FromRole="PondUser" ToRole="Pond" />
+          <Property Name="PondId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="UserPondUser">
+          <End Type="Model1.User" Multiplicity="1" Role="User" />
+          <End Type="Model1.PondUser" Multiplicity="*" Role="PondUser" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PondUser">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PondPondUser">
+          <End Type="Model1.Pond" Multiplicity="1" Role="Pond" />
+          <End Type="Model1.PondUser" Multiplicity="*" Role="PondUser" />
+          <ReferentialConstraint>
+            <Principal Role="Pond">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PondUser">
+              <PropertyRef Name="PondId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Module">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="ModuleForm" Relationship="Model1.ModuleModuleForm" FromRole="Module" ToRole="ModuleForm" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ModuleForm">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="IdModule" Relationship="Model1.ModuleModuleForm" FromRole="ModuleForm" ToRole="Module" />
+          <Property Name="ModuleId" Nullable="false" Type="Int32" />
+          <NavigationProperty Name="IdForm" Relationship="Model1.FormModuleForm" FromRole="ModuleForm" ToRole="Form" />
+          <Property Name="FormId" Nullable="false" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Form">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ModuleForm" Relationship="Model1.FormModuleForm" FromRole="Form" ToRole="ModuleForm" />
+          <NavigationProperty Name="RolFormPermission" Relationship="Model1.FormRolFormPermission" FromRole="Form" ToRole="RolFormPermission" />
+        </EntityType>
+        <Association Name="ModuleModuleForm">
+          <End Type="Model1.Module" Multiplicity="1" Role="Module" />
+          <End Type="Model1.ModuleForm" Multiplicity="*" Role="ModuleForm" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ModuleForm">
+              <PropertyRef Name="ModuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FormModuleForm">
+          <End Type="Model1.Form" Multiplicity="1" Role="Form" />
+          <End Type="Model1.ModuleForm" Multiplicity="*" Role="ModuleForm" />
+          <ReferentialConstraint>
+            <Principal Role="Form">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ModuleForm">
+              <PropertyRef Name="FormId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RolRolFormPermission">
+          <End Type="Model1.Rol" Role="Rol" Multiplicity="1" />
+          <End Type="Model1.RolFormPermission" Role="RolFormPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RolFormPermission">
+              <PropertyRef Name="RolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PermissionRolFormPermission">
+          <End Type="Model1.Permission" Role="Permission" Multiplicity="1" />
+          <End Type="Model1.RolFormPermission" Role="RolFormPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Permission">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RolFormPermission">
+              <PropertyRef Name="PermissionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FormRolFormPermission">
+          <End Type="Model1.Form" Role="Form" Multiplicity="1" />
+          <End Type="Model1.RolFormPermission" Role="RolFormPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Form">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RolFormPermission">
+              <PropertyRef Name="FormId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RolRolUser">
+          <End Type="Model1.Rol" Role="Rol" Multiplicity="1" />
+          <End Type="Model1.RolUser" Role="RolUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RolUser">
+              <PropertyRef Name="RolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Sensor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" Nullable="false" />
+          <Property Name="type" Type="String" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="Is_Delete" Type="String" Nullable="false" />
+          <NavigationProperty Name="IdPond" Relationship="Model1.PondSensonr" FromRole="Sensonr" ToRole="Pond" />
+          <Property Name="PondId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SensorData" Relationship="Model1.SensorSensorData" FromRole="Sensor" ToRole="SensorData" />
+          <NavigationProperty Name="Alert" Relationship="Model1.SensorAlert" FromRole="Sensor" ToRole="Alert" />
+        </EntityType>
+        <EntityType Name="SensorData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date_time" Type="String" Nullable="false" />
+          <Property Name="Value" Type="String" Nullable="false" />
+          <Property Name="Is_Delete" Type="String" Nullable="false" />
+          <NavigationProperty Name="IdSensor" Relationship="Model1.SensorSensorData" FromRole="SensorData" ToRole="Sensor" />
+          <Property Name="SensorId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Alert">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Threshold" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="Int32" Nullable="false" />
+          <Property Name="Alert_Type" Type="String" Nullable="false" />
+          <Property Name="DateTime" Type="DateTime" Nullable="false" />
+          <Property Name="Resolved" Type="Boolean" Nullable="false" />
+          <Property Name="Is_Delete" Type="String" Nullable="false" />
+          <NavigationProperty Name="IdSensor" Relationship="Model1.SensorAlert" FromRole="Alert" ToRole="Sensor" />
+          <Property Name="SensorId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="PondSensonr">
+          <End Type="Model1.Pond" Role="Pond" Multiplicity="1" />
+          <End Type="Model1.Sensor" Role="Sensonr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pond">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sensonr">
+              <PropertyRef Name="PondId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SensorSensorData">
+          <End Type="Model1.Sensor" Role="Sensor" Multiplicity="1" />
+          <End Type="Model1.SensorData" Role="SensorData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sensor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SensorData">
+              <PropertyRef Name="SensorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SensorAlert">
+          <End Type="Model1.Sensor" Role="Sensor" Multiplicity="1" />
+          <End Type="Model1.Alert" Role="Alert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sensor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Alert">
+              <PropertyRef Name="SensorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PondObservation">
+          <End Type="Model1.Pond" Role="Pond" Multiplicity="1" />
+          <End Type="Model1.Observation" Role="Observation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pond">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Observation">
+              <PropertyRef Name="PondId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="Model1" />
+        <Alias Key="Target" Value="Model1.Store" />
+        <EntityContainerMapping CdmEntityContainer="Model1Container" StorageEntityContainer="Model1TargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

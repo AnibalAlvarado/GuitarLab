@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Implementations\Operational\**" />
+    <Compile Remove="Implementations\Parameter\**" />
+    <Compile Remove="Implementations\Security\**" />
+    <Compile Remove="Interfaces\Operational\**" />
+    <Compile Remove="Interfaces\Parameter\**" />
+    <Compile Remove="Interfaces\Security\**" />
+    <EmbeddedResource Remove="Implementations\Operational\**" />
+    <EmbeddedResource Remove="Implementations\Parameter\**" />
+    <EmbeddedResource Remove="Implementations\Security\**" />
+    <EmbeddedResource Remove="Interfaces\Operational\**" />
+    <EmbeddedResource Remove="Interfaces\Parameter\**" />
+    <EmbeddedResource Remove="Interfaces\Security\**" />
+    <None Remove="Implementations\Operational\**" />
+    <None Remove="Implementations\Parameter\**" />
+    <None Remove="Implementations\Security\**" />
+    <None Remove="Interfaces\Operational\**" />
+    <None Remove="Interfaces\Parameter\**" />
+    <None Remove="Interfaces\Security\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="14.0.0" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="FluentValidation" Version="12.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.5" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="9.0.5" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.9.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Data\Data.csproj" />
+    <ProjectReference Include="..\Entity\Entity.csproj" />
+	<ProjectReference Include="..\Utilities\Utilities.csproj" />
+  </ItemGroup>
+
+</Project>

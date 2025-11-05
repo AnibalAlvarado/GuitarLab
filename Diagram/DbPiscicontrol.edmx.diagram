@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9969cf43a73149628a8dc7ee4a18e193" Name="Diagram1" ZoomLevel="26" >
+        <EntityTypeShape EntityType="Model1.Rol" Width="1.875" PointX="9.375" PointY="3.125" />
+        <EntityTypeShape EntityType="Model1.User" Width="1.5" PointX="16" PointY="6.375" />
+        <EntityTypeShape EntityType="Model1.Person" Width="1.5" PointX="10.75" PointY="7.5" />
+        <EntityTypeShape EntityType="Model1.Permission" Width="1.5" PointX="5.75" PointY="1" />
+        <EntityTypeShape EntityType="Model1.RolFormPermission" Width="1.5" PointX="6" PointY="4.875" />
+        <EntityTypeShape EntityType="Model1.RolUser" Width="1.5" PointX="12.375" PointY="3.75" />
+        <AssociationConnector Association="Model1.UserRolUser" />
+        <AssociationConnector Association="Model1.PersonUser" />
+        <EntityTypeShape EntityType="Model1.Pond" Width="1.5" PointX="20" PointY="11.375" />
+        <EntityTypeShape EntityType="Model1.Task" Width="1.5" PointX="11.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model1.Measurements" Width="1.5" PointX="18.125" PointY="16.375" />
+        <AssociationConnector Association="Model1.PondMeasurements" />
+        <EntityTypeShape EntityType="Model1.Observation" Width="1.5" PointX="20.875" PointY="16.625" />
+        <EntityTypeShape EntityType="Model1.ProductionCycle" Width="1.5" PointX="22.75" PointY="7.75" />
+        <AssociationConnector Association="Model1.PondProductionCycle" />
+        <EntityTypeShape EntityType="Model1.Feeding" Width="1.5" PointX="27.375" PointY="10.125" IsExpanded="true" />
+        <AssociationConnector Association="Model1.ProductionCycleFeeding" />
+        <EntityTypeShape EntityType="Model1.Mortality" Width="1.5" PointX="29.875" PointY="7" IsExpanded="true" />
+        <AssociationConnector Association="Model1.ProductionCycleMortality" />
+        <EntityTypeShape EntityType="Model1.Biometrics" Width="1.5" PointX="23.375" PointY="2.375" IsExpanded="true" />
+        <AssociationConnector Association="Model1.ProductionCyclebiometrics" />
+        <EntityTypeShape EntityType="Model1.Notification" Width="1.5" PointX="22.625" PointY="13.75" IsExpanded="true" />
+        <AssociationConnector Association="Model1.PondNotification" />
+        <EntityTypeShape EntityType="Model1.TaskPond" Width="1.5" PointX="14.625" PointY="13.25" IsExpanded="true" />
+        <AssociationConnector Association="Model1.PondTaskPond" />
+        <AssociationConnector Association="Model1.TaskTaskPond" />
+        <EntityTypeShape EntityType="Model1.PondUser" Width="1.5" PointX="16.25" PointY="9.75" />
+        <AssociationConnector Association="Model1.UserPondUser" />
+        <AssociationConnector Association="Model1.PondPondUser" />
+        <EntityTypeShape EntityType="Model1.Module" Width="1.5" PointX="1.25" PointY="1" />
+        <EntityTypeShape EntityType="Model1.ModuleForm" Width="1.5" PointX="1.375" PointY="4.5" />
+        <EntityTypeShape EntityType="Model1.Form" Width="1.5" PointX="0.5" PointY="8.75" />
+        <AssociationConnector Association="Model1.ModuleModuleForm" />
+        <AssociationConnector Association="Model1.FormModuleForm" />
+        <AssociationConnector Association="Model1.RolRolFormPermission" />
+        <AssociationConnector Association="Model1.PermissionRolFormPermission" />
+        <AssociationConnector Association="Model1.FormRolFormPermission" />
+        <AssociationConnector Association="Model1.RolRolUser" />
+        <EntityTypeShape EntityType="Model1.Sensor" Width="1.5" PointX="27.75" PointY="12.375" />
+        <EntityTypeShape EntityType="Model1.SensorData" Width="1.5" PointX="31.5" PointY="14.5" />
+        <EntityTypeShape EntityType="Model1.Alert" Width="1.5" PointX="32" PointY="11.125" />
+        <AssociationConnector Association="Model1.PondSensonr" />
+        <AssociationConnector Association="Model1.SensorSensorData" />
+        <AssociationConnector Association="Model1.SensorAlert" />
+        <AssociationConnector Association="Model1.PondObservation" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

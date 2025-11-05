@@ -1,0 +1,16 @@
+﻿using Entity.Dtos;
+using Entity.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Data.Interfaces
+{
+    public interface IGuitaristData : IRepositoryData<Guitarist>
+    {
+        Task<Guitarist?> GetGuitaristByGuitaristnameAsync(string Guitaristname);
+
+    }
+}

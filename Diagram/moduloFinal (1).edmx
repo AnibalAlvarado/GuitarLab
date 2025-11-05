@@ -1,0 +1,1333 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="modulo.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="moduloStoreContainer">
+    <EntitySet Name="RatesSet" EntityType="modulo.Store.RatesSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PersonSet" EntityType="modulo.Store.PersonSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MembershipsSet" EntityType="modulo.Store.MembershipsSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BlackListSet" EntityType="modulo.Store.BlackListSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="VehicleSet" EntityType="modulo.Store.VehicleSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ParkingHistorySet" EntityType="modulo.Store.ParkingHistorySet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ParkingSet" EntityType="modulo.Store.ParkingSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RegisteredVehiclesSet" EntityType="modulo.Store.RegisteredVehiclesSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ConfigurationRatesSet" EntityType="modulo.Store.ConfigurationRatesSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RolSet" EntityType="modulo.Store.RolSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserSet" EntityType="modulo.Store.UserSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PermissionSet" EntityType="modulo.Store.PermissionSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ModuleSet" EntityType="modulo.Store.ModuleSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FormModuleSet" EntityType="modulo.Store.FormModuleSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CamaraSet" EntityType="modulo.Store.CamaraSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ClientSet" EntityType="modulo.Store.ClientSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FormsSet" EntityType="modulo.Store.FormsSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MembershipsVehicleSet" EntityType="modulo.Store.MembershipsVehicleSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FormRolPermissionSet" EntityType="modulo.Store.FormRolPermissionSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RolUserSet" EntityType="modulo.Store.RolUserSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TypeRatesSet" EntityType="modulo.Store.TypeRatesSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TypeVehicleSet" EntityType="modulo.Store.TypeVehicleSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="VehicleUser" Association="modulo.Store.VehicleUser">
+      <End Role="Vehicle" EntitySet="VehicleSet" />
+      <End Role="User" EntitySet="UserSet" />
+    </AssociationSet>
+    <AssociationSet Name="CamaraParking" Association="modulo.Store.CamaraParking">
+      <End Role="Camara" EntitySet="CamaraSet" />
+      <End Role="Parking" EntitySet="ParkingSet" />
+    </AssociationSet>
+    <AssociationSet Name="UserPerson" Association="modulo.Store.UserPerson">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="Person" EntitySet="PersonSet" />
+    </AssociationSet>
+    <AssociationSet Name="ClientVehicle" Association="modulo.Store.ClientVehicle">
+      <End Role="Client" EntitySet="ClientSet" />
+      <End Role="Vehicle" EntitySet="VehicleSet" />
+    </AssociationSet>
+    <AssociationSet Name="BlacklistClient" Association="modulo.Store.BlacklistClient">
+      <End Role="Blacklist" EntitySet="BlackListSet" />
+      <End Role="Client" EntitySet="ClientSet" />
+    </AssociationSet>
+    <AssociationSet Name="MembershipsMembershipsVehicle" Association="modulo.Store.MembershipsMembershipsVehicle">
+      <End Role="Memberships" EntitySet="MembershipsSet" />
+      <End Role="MembershipsVehicle" EntitySet="MembershipsVehicleSet" />
+    </AssociationSet>
+    <AssociationSet Name="VehicleMembershipsVehicle" Association="modulo.Store.VehicleMembershipsVehicle">
+      <End Role="Vehicle" EntitySet="VehicleSet" />
+      <End Role="MembershipsVehicle" EntitySet="MembershipsVehicleSet" />
+    </AssociationSet>
+    <AssociationSet Name="UserClient" Association="modulo.Store.UserClient">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="Client" EntitySet="ClientSet" />
+    </AssociationSet>
+    <AssociationSet Name="UserRolUser" Association="modulo.Store.UserRolUser">
+      <End Role="RolUser" EntitySet="RolUserSet" />
+      <End Role="User" EntitySet="UserSet" />
+    </AssociationSet>
+    <AssociationSet Name="RatesTypeRates" Association="modulo.Store.RatesTypeRates">
+      <End Role="Rates" EntitySet="RatesSet" />
+      <End Role="TypeRates" EntitySet="TypeRatesSet" />
+    </AssociationSet>
+    <AssociationSet Name="RolRolUser" Association="modulo.Store.RolRolUser">
+      <End Role="Rol" EntitySet="RolSet" />
+      <End Role="RolUser" EntitySet="RolUserSet" />
+    </AssociationSet>
+    <AssociationSet Name="PermissionFormRolPermission" Association="modulo.Store.PermissionFormRolPermission">
+      <End Role="FormRolPermission" EntitySet="FormRolPermissionSet" />
+      <End Role="Permission" EntitySet="PermissionSet" />
+    </AssociationSet>
+    <AssociationSet Name="RolFormRolPermission" Association="modulo.Store.RolFormRolPermission">
+      <End Role="Rol" EntitySet="RolSet" />
+      <End Role="FormRolPermission" EntitySet="FormRolPermissionSet" />
+    </AssociationSet>
+    <AssociationSet Name="VehicleRegisteredVehicles" Association="modulo.Store.VehicleRegisteredVehicles">
+      <End Role="Vehicle" EntitySet="VehicleSet" />
+      <End Role="RegisteredVehicles" EntitySet="RegisteredVehiclesSet" />
+    </AssociationSet>
+    <AssociationSet Name="ModuleFormModule" Association="modulo.Store.ModuleFormModule">
+      <End Role="Module" EntitySet="ModuleSet" />
+      <End Role="FormModule" EntitySet="FormModuleSet" />
+    </AssociationSet>
+    <AssociationSet Name="FormsFormModule" Association="modulo.Store.FormsFormModule">
+      <End Role="Forms" EntitySet="FormsSet" />
+      <End Role="FormModule" EntitySet="FormModuleSet" />
+    </AssociationSet>
+    <AssociationSet Name="FormsFormRolPermission" Association="modulo.Store.FormsFormRolPermission">
+      <End Role="Forms" EntitySet="FormsSet" />
+      <End Role="FormRolPermission" EntitySet="FormRolPermissionSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="RatesSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TypeRate" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Amount" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="StartDuration" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EndDuration" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TypeRates_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PersonSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Document" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Age" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Active" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MembershipsSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MembershipType" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="StartDate" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EndDate" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Start" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BlackListSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Reason" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="RestrictionDate" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ClientId" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Client_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VehicleSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Plate" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Color" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ClientId" Type="int" Nullable="false" />
+    <Property Name="MembershipsVehicle_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ParkingHistorySet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EntryDate" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DepartureDate" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TotalTime" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ParkingSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Location" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Ability" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RegisteredVehiclesSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EntryDateTime" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ExitDateTime" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="VehicleId" Type="int" Nullable="false" />
+    <Property Name="VehicleHistory_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ConfigurationRatesSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Amount" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DurationApplied" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LastUpdatedDate" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RolSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PersonId" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="VehicleUser_User_Id" Type="int" Nullable="false" />
+    <Property Name="Person_Id" Type="int" Nullable="false" />
+    <Property Name="Client_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PermissionSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ModuleSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FormModuleSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ModuleId" Type="int" Nullable="false" />
+    <Property Name="FormsId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CamaraSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HighResolution" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="HighShutterSpeed" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NightVisionInfrared" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="OptimizedAngleOfSision" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="InfraredLighting" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Parking_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ClientSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PersonId" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FormsSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Url" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MembershipsVehicleSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MembershipsId" Type="int" Nullable="false" />
+    <Property Name="VehicleId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FormRolPermissionSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PermissionId" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FormDTO" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="RolId1" Type="int" Nullable="false" />
+    <Property Name="FormsId" Type="int" Nullable="false" />
+    <Property Name="Permission_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RolUserSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RolId" Type="int" Nullable="false" />
+    <Property Name="User_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TypeRatesSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Price" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TypeVehicleSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="VehicleUser">
+    <End Role="Vehicle" Type="modulo.Store.VehicleSet" Multiplicity="1" />
+    <End Role="User" Type="modulo.Store.UserSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vehicle">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="VehicleUser_User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CamaraParking">
+    <End Role="Camara" Type="modulo.Store.CamaraSet" Multiplicity="*" />
+    <End Role="Parking" Type="modulo.Store.ParkingSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Parking">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Camara">
+        <PropertyRef Name="Parking_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserPerson">
+    <End Role="User" Type="modulo.Store.UserSet" Multiplicity="*" />
+    <End Role="Person" Type="modulo.Store.PersonSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Person_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ClientVehicle">
+    <End Role="Client" Type="modulo.Store.ClientSet" Multiplicity="1" />
+    <End Role="Vehicle" Type="modulo.Store.VehicleSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Vehicle">
+        <PropertyRef Name="ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BlacklistClient">
+    <End Role="Blacklist" Type="modulo.Store.BlackListSet" Multiplicity="*" />
+    <End Role="Client" Type="modulo.Store.ClientSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Blacklist">
+        <PropertyRef Name="Client_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MembershipsMembershipsVehicle">
+    <End Role="Memberships" Type="modulo.Store.MembershipsSet" Multiplicity="1" />
+    <End Role="MembershipsVehicle" Type="modulo.Store.MembershipsVehicleSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Memberships">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MembershipsVehicle">
+        <PropertyRef Name="MembershipsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="VehicleMembershipsVehicle">
+    <End Role="Vehicle" Type="modulo.Store.VehicleSet" Multiplicity="*" />
+    <End Role="MembershipsVehicle" Type="modulo.Store.MembershipsVehicleSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="MembershipsVehicle">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Vehicle">
+        <PropertyRef Name="MembershipsVehicle_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserClient">
+    <End Role="User" Type="modulo.Store.UserSet" Multiplicity="*" />
+    <End Role="Client" Type="modulo.Store.ClientSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Client_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserRolUser">
+    <End Role="RolUser" Type="modulo.Store.RolUserSet" Multiplicity="*" />
+    <End Role="User" Type="modulo.Store.UserSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RolUser">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RatesTypeRates">
+    <End Role="Rates" Type="modulo.Store.RatesSet" Multiplicity="*" />
+    <End Role="TypeRates" Type="modulo.Store.TypeRatesSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="TypeRates">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Rates">
+        <PropertyRef Name="TypeRates_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RolRolUser">
+    <End Role="Rol" Type="modulo.Store.RolSet" Multiplicity="1" />
+    <End Role="RolUser" Type="modulo.Store.RolUserSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RolUser">
+        <PropertyRef Name="RolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PermissionFormRolPermission">
+    <End Role="FormRolPermission" Type="modulo.Store.FormRolPermissionSet" Multiplicity="*" />
+    <End Role="Permission" Type="modulo.Store.PermissionSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Permission">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FormRolPermission">
+        <PropertyRef Name="Permission_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RolFormRolPermission">
+    <End Role="Rol" Type="modulo.Store.RolSet" Multiplicity="1" />
+    <End Role="FormRolPermission" Type="modulo.Store.FormRolPermissionSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FormRolPermission">
+        <PropertyRef Name="RolId1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="VehicleRegisteredVehicles">
+    <End Role="Vehicle" Type="modulo.Store.VehicleSet" Multiplicity="1" />
+    <End Role="RegisteredVehicles" Type="modulo.Store.RegisteredVehiclesSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vehicle">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RegisteredVehicles">
+        <PropertyRef Name="VehicleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ModuleFormModule">
+    <End Role="Module" Type="modulo.Store.ModuleSet" Multiplicity="1" />
+    <End Role="FormModule" Type="modulo.Store.FormModuleSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Module">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FormModule">
+        <PropertyRef Name="ModuleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FormsFormModule">
+    <End Role="Forms" Type="modulo.Store.FormsSet" Multiplicity="1" />
+    <End Role="FormModule" Type="modulo.Store.FormModuleSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Forms">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FormModule">
+        <PropertyRef Name="FormsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FormsFormRolPermission">
+    <End Role="Forms" Type="modulo.Store.FormsSet" Multiplicity="1" />
+    <End Role="FormRolPermission" Type="modulo.Store.FormRolPermissionSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Forms">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FormRolPermission">
+        <PropertyRef Name="FormsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="modulo" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="moduloContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="RatesSet" EntityType="modulo.Rates" />
+          <EntitySet Name="PersonSet" EntityType="modulo.Person" />
+          <EntitySet Name="MembershipsSet" EntityType="modulo.Memberships" />
+          <EntitySet Name="BlackListSet" EntityType="modulo.BlackList" />
+          <EntitySet Name="VehicleSet" EntityType="modulo.Vehicle" />
+          <EntitySet Name="ParkingHistorySet" EntityType="modulo.ParkingHistory" />
+          <EntitySet Name="ParkingSet" EntityType="modulo.Parking" />
+          <EntitySet Name="RegisteredVehiclesSet" EntityType="modulo.RegisteredVehicles" />
+          <EntitySet Name="ConfigurationRatesSet" EntityType="modulo.ConfigurationRates" />
+          <EntitySet Name="RolSet" EntityType="modulo.Rol" />
+          <EntitySet Name="UserSet" EntityType="modulo.User" />
+          <EntitySet Name="PermissionSet" EntityType="modulo.Permission" />
+          <EntitySet Name="ModuleSet" EntityType="modulo.Module" />
+          <EntitySet Name="FormModuleSet" EntityType="modulo.FormModule" />
+          <EntitySet Name="CamaraSet" EntityType="modulo.Camara" />
+          <EntitySet Name="ClientSet" EntityType="modulo.Client" />
+          <AssociationSet Name="UserPerson" Association="modulo.UserPerson">
+            <End Role="User" EntitySet="UserSet" />
+            <End Role="Person" EntitySet="PersonSet" />
+          </AssociationSet>
+          <AssociationSet Name="ClientVehicle" Association="modulo.ClientVehicle">
+            <End Role="Client" EntitySet="ClientSet" />
+            <End Role="Vehicle" EntitySet="VehicleSet" />
+          </AssociationSet>
+          <EntitySet Name="FormsSet" EntityType="modulo.Forms" />
+          <AssociationSet Name="BlacklistClient" Association="modulo.BlacklistClient">
+            <End Role="Blacklist" EntitySet="BlackListSet" />
+            <End Role="Client" EntitySet="ClientSet" />
+          </AssociationSet>
+          <EntitySet Name="MembershipsVehicleSet" EntityType="modulo.MembershipsVehicle" />
+          <AssociationSet Name="MembershipsMembershipsVehicle" Association="modulo.MembershipsMembershipsVehicle">
+            <End Role="Memberships" EntitySet="MembershipsSet" />
+            <End Role="MembershipsVehicle" EntitySet="MembershipsVehicleSet" />
+          </AssociationSet>
+          <EntitySet Name="FormRolPermissionSet" EntityType="modulo.FormRolPermission" />
+          <AssociationSet Name="VehicleMembershipsVehicle" Association="modulo.VehicleMembershipsVehicle">
+            <End Role="Vehicle" EntitySet="VehicleSet" />
+            <End Role="MembershipsVehicle" EntitySet="MembershipsVehicleSet" />
+          </AssociationSet>
+          <EntitySet Name="RolUserSet" EntityType="modulo.RolUser" />
+          <AssociationSet Name="UserRolUser" Association="modulo.UserRolUser">
+            <End Role="RolUser" EntitySet="RolUserSet" />
+            <End Role="User" EntitySet="UserSet" />
+          </AssociationSet>
+          <EntitySet Name="TypeRatesSet" EntityType="modulo.TypeRates" />
+          <AssociationSet Name="RatesTypeRates" Association="modulo.RatesTypeRates">
+            <End Role="Rates" EntitySet="RatesSet" />
+            <End Role="TypeRates" EntitySet="TypeRatesSet" />
+          </AssociationSet>
+          <EntitySet Name="TypeVehicleSet" EntityType="modulo.TypeVehicle" />
+          <AssociationSet Name="RolRolUser" Association="modulo.RolRolUser">
+            <End Role="Rol" EntitySet="RolSet" />
+            <End Role="RolUser" EntitySet="RolUserSet" />
+          </AssociationSet>
+          <AssociationSet Name="PermissionFormRolPermission" Association="modulo.PermissionFormRolPermission">
+            <End Role="FormRolPermission" EntitySet="FormRolPermissionSet" />
+            <End Role="Permission" EntitySet="PermissionSet" />
+          </AssociationSet>
+          <AssociationSet Name="RolFormRolPermission" Association="modulo.RolFormRolPermission">
+            <End Role="Rol" EntitySet="RolSet" />
+            <End Role="FormRolPermission" EntitySet="FormRolPermissionSet" />
+          </AssociationSet>
+          <AssociationSet Name="VehicleRegisteredVehicles" Association="modulo.VehicleRegisteredVehicles">
+            <End Role="Vehicle" EntitySet="VehicleSet" />
+            <End Role="RegisteredVehicles" EntitySet="RegisteredVehiclesSet" />
+          </AssociationSet>
+          <AssociationSet Name="ModuleFormModule" Association="modulo.ModuleFormModule">
+            <End Role="Module" EntitySet="ModuleSet" />
+            <End Role="FormModule" EntitySet="FormModuleSet" />
+          </AssociationSet>
+          <AssociationSet Name="FormsFormModule" Association="modulo.FormsFormModule">
+            <End Role="Forms" EntitySet="FormsSet" />
+            <End Role="FormModule" EntitySet="FormModuleSet" />
+          </AssociationSet>
+          <AssociationSet Name="FormsFormRolPermission" Association="modulo.FormsFormRolPermission">
+            <End Role="Forms" EntitySet="FormsSet" />
+            <End Role="FormRolPermission" EntitySet="FormRolPermissionSet" />
+          </AssociationSet>
+          <AssociationSet Name="VehicleTypeVehicle" Association="modulo.VehicleTypeVehicle">
+            <End Role="Vehicle" EntitySet="VehicleSet" />
+            <End Role="TypeVehicle" EntitySet="TypeVehicleSet" />
+          </AssociationSet>
+          <AssociationSet Name="ClientPerson" Association="modulo.ClientPerson">
+            <End Role="Client" EntitySet="ClientSet" />
+            <End Role="Person" EntitySet="PersonSet" />
+          </AssociationSet>
+          <AssociationSet Name="ParkingRates" Association="modulo.ParkingRates">
+            <End Role="Parking" EntitySet="ParkingSet" />
+            <End Role="Rates" EntitySet="RatesSet" />
+          </AssociationSet>
+          <AssociationSet Name="ParkingCamara" Association="modulo.ParkingCamara">
+            <End Role="Parking" EntitySet="ParkingSet" />
+            <End Role="Camara" EntitySet="CamaraSet" />
+          </AssociationSet>
+          <AssociationSet Name="RegisteredVehiclesParking" Association="modulo.RegisteredVehiclesParking">
+            <End Role="RegisteredVehicles" EntitySet="RegisteredVehiclesSet" />
+            <End Role="Parking" EntitySet="ParkingSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Rates">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeRateId" Type="String" Nullable="false" />
+          <Property Name="Amount" Type="String" Nullable="false" />
+          <NavigationProperty Name="TypeRates" Relationship="modulo.RatesTypeRates" FromRole="Rates" ToRole="TypeRates" />
+          <Property Name="StartDuration" Type="String" Nullable="false" />
+          <Property Name="EndDuration" Type="String" Nullable="false" />
+          <NavigationProperty Name="Parking" Relationship="modulo.ParkingRates" FromRole="Rates" ToRole="Parking" />
+          <Property Name="ParkingId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Document" Type="String" Nullable="false" />
+          <Property Name="Phone" Type="String" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="modulo.UserPerson" FromRole="Person" ToRole="User" />
+          <Property Name="LastName" Type="String" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" />
+          <Property Name="Age" Type="String" Nullable="false" />
+          <Property Name="Active" Type="String" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="modulo.ClientPerson" FromRole="Person" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="Memberships">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MembershipType" Type="String" Nullable="false" />
+          <Property Name="StartDate" Type="String" Nullable="false" />
+          <Property Name="EndDate" Type="String" Nullable="false" />
+          <Property Name="Start" Type="String" Nullable="false" />
+          <NavigationProperty Name="MembershipsVehicle" Relationship="modulo.MembershipsMembershipsVehicle" FromRole="Memberships" ToRole="MembershipsVehicle" />
+        </EntityType>
+        <EntityType Name="BlackList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Reason" Type="String" Nullable="false" />
+          <Property Name="RestrictionDate" Type="String" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="modulo.BlacklistClient" FromRole="Blacklist" ToRole="Client" />
+          <Property Name="ClientId" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vehicle">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Plate" Type="String" Nullable="false" />
+          <Property Name="Color" Type="String" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="modulo.ClientVehicle" FromRole="Vehicle" ToRole="Client" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MembershipsVehicle" Relationship="modulo.VehicleMembershipsVehicle" FromRole="Vehicle" ToRole="MembershipsVehicle" />
+          <NavigationProperty Name="RegisteredVehicles" Relationship="modulo.VehicleRegisteredVehicles" FromRole="Vehicle" ToRole="RegisteredVehicles" />
+          <NavigationProperty Name="TypeVehicle" Relationship="modulo.VehicleTypeVehicle" FromRole="Vehicle" ToRole="TypeVehicle" />
+          <Property Name="TypeVehicleId" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ParkingHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="EntryDate" Nullable="false" Type="String" />
+          <Property Name="DepartureDate" Nullable="false" Type="String" />
+          <Property Name="TotalTime" Nullable="false" Type="String" />
+        </EntityType>
+        <EntityType Name="Parking">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Location" Type="String" Nullable="false" />
+          <Property Name="Ability" Type="String" Nullable="false" />
+          <NavigationProperty Name="Rates" Relationship="modulo.ParkingRates" FromRole="Parking" ToRole="Rates" />
+          <NavigationProperty Name="Camara" Relationship="modulo.ParkingCamara" FromRole="Parking" ToRole="Camara" />
+          <NavigationProperty Name="RegisteredVehicles" Relationship="modulo.RegisteredVehiclesParking" FromRole="Parking" ToRole="RegisteredVehicles" />
+        </EntityType>
+        <EntityType Name="RegisteredVehicles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EntryDate" Type="String" Nullable="false" />
+          <Property Name="ExitDate" Type="String" Nullable="false" />
+          <NavigationProperty Name="Vehicle" Relationship="modulo.VehicleRegisteredVehicles" FromRole="RegisteredVehicles" ToRole="Vehicle" />
+          <Property Name="VehicleId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Parking" Relationship="modulo.RegisteredVehiclesParking" FromRole="RegisteredVehicles" ToRole="Parking" />
+        </EntityType>
+        <EntityType Name="ConfigurationRates">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Amount" Type="String" Nullable="false" />
+          <Property Name="DurationApplied" Type="String" Nullable="false" />
+          <Property Name="LastUpdatedDate" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" />
+          <NavigationProperty Name="RolUser" Relationship="modulo.RolRolUser" FromRole="Rol" ToRole="RolUser" />
+          <NavigationProperty Name="FormRolPermissions" Relationship="modulo.RolFormRolPermission" FromRole="Rol" ToRole="FormRolPermission" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="modulo.UserPerson" FromRole="User" ToRole="Person" />
+          <Property Name="PersonId" Type="String" Nullable="false" />
+          <NavigationProperty Name="RolUser" Relationship="modulo.UserRolUser" FromRole="User" ToRole="RolUser" />
+        </EntityType>
+        <EntityType Name="Permission">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" />
+          <NavigationProperty Name="FormRolPermission" Relationship="modulo.PermissionFormRolPermission" FromRole="Permission" ToRole="FormRolPermission" />
+        </EntityType>
+        <EntityType Name="Module">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="FormModules" Relationship="modulo.ModuleFormModule" FromRole="Module" ToRole="FormModule" />
+        </EntityType>
+        <EntityType Name="FormModule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Module" Relationship="modulo.ModuleFormModule" FromRole="FormModule" ToRole="Module" />
+          <Property Name="ModuleId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Form" Relationship="modulo.FormsFormModule" FromRole="FormModule" ToRole="Forms" />
+          <Property Name="FormsId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Camara">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HighResolution" Type="String" Nullable="false" />
+          <Property Name="HighShutterSpeed" Type="String" Nullable="false" />
+          <Property Name="NightVisionInfrared" Type="String" Nullable="false" />
+          <Property Name="OptimizedAngleOfSision" Type="String" Nullable="false" />
+          <Property Name="InfraredLighting" Type="String" Nullable="false" />
+          <NavigationProperty Name="Parking" Relationship="modulo.ParkingCamara" FromRole="Camara" ToRole="Parking" />
+          <Property Name="ParkingId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="Vehicle" Relationship="modulo.ClientVehicle" FromRole="Client" ToRole="Vehicle" />
+          <NavigationProperty Name="Blacklist" Relationship="modulo.BlacklistClient" FromRole="Client" ToRole="Blacklist" />
+          <Property Name="PersonId" Type="String" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="modulo.ClientPerson" FromRole="Client" ToRole="Person" />
+        </EntityType>
+        <Association Name="UserPerson">
+          <End Type="modulo.User" Role="User" Multiplicity="1" />
+          <End Type="modulo.Person" Role="Person" Multiplicity="1" />
+        </Association>
+        <Association Name="ClientVehicle">
+          <End Type="modulo.Client" Role="Client" Multiplicity="1" />
+          <End Type="modulo.Vehicle" Role="Vehicle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vehicle">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Forms">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Url" Type="String" Nullable="false" />
+          <NavigationProperty Name="FormModules" Relationship="modulo.FormsFormModule" FromRole="Forms" ToRole="FormModule" />
+          <NavigationProperty Name="FormRolPermissions" Relationship="modulo.FormsFormRolPermission" FromRole="Forms" ToRole="FormRolPermission" />
+        </EntityType>
+        <Association Name="BlacklistClient">
+          <End Type="modulo.BlackList" Role="Blacklist" Multiplicity="1" />
+          <End Type="modulo.Client" Role="Client" Multiplicity="1" />
+        </Association>
+        <EntityType Name="MembershipsVehicle">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Memberships" Relationship="modulo.MembershipsMembershipsVehicle" FromRole="MembershipsVehicle" ToRole="Memberships" />
+          <Property Name="MembershipsId" Type="Int32" Nullable="false" />
+          <Property Name="VehicleId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Vehicle" Relationship="modulo.VehicleMembershipsVehicle" FromRole="MembershipsVehicle" ToRole="Vehicle" />
+        </EntityType>
+        <Association Name="MembershipsMembershipsVehicle">
+          <End Type="modulo.Memberships" Role="Memberships" Multiplicity="1" />
+          <End Type="modulo.MembershipsVehicle" Role="MembershipsVehicle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Memberships">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MembershipsVehicle">
+              <PropertyRef Name="MembershipsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="FormRolPermission">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PermissionId" Type="String" Nullable="false" />
+          <Property Name="FormDTO" Type="String" Nullable="false" />
+          <NavigationProperty Name="Permission" Relationship="modulo.PermissionFormRolPermission" FromRole="FormRolPermission" ToRole="Permission" />
+          <NavigationProperty Name="Rol" Relationship="modulo.RolFormRolPermission" FromRole="FormRolPermission" ToRole="Rol" />
+          <Property Name="RolId1" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Form" Relationship="modulo.FormsFormRolPermission" FromRole="FormRolPermission" ToRole="Forms" />
+          <Property Name="FormsId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="VehicleMembershipsVehicle">
+          <End Type="modulo.Vehicle" Role="Vehicle" Multiplicity="1" />
+          <End Type="modulo.MembershipsVehicle" Role="MembershipsVehicle" Multiplicity="1" />
+        </Association>
+        <EntityType Name="RolUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="User" Relationship="modulo.UserRolUser" FromRole="RolUser" ToRole="User" />
+          <NavigationProperty Name="Rol" Relationship="modulo.RolRolUser" FromRole="RolUser" ToRole="Rol" />
+          <Property Name="RolId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="UserRolUser">
+          <End Type="modulo.RolUser" Role="RolUser" Multiplicity="*" />
+          <End Type="modulo.User" Role="User" Multiplicity="1" />
+        </Association>
+        <EntityType Name="TypeRates">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="Rates" Relationship="modulo.RatesTypeRates" FromRole="TypeRates" ToRole="Rates" />
+        </EntityType>
+        <Association Name="RatesTypeRates">
+          <End Type="modulo.Rates" Role="Rates" Multiplicity="1" />
+          <End Type="modulo.TypeRates" Role="TypeRates" Multiplicity="1" />
+        </Association>
+        <EntityType Name="TypeVehicle">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="Vehicle" Relationship="modulo.VehicleTypeVehicle" FromRole="TypeVehicle" ToRole="Vehicle" />
+        </EntityType>
+        <Association Name="RolRolUser">
+          <End Type="modulo.Rol" Role="Rol" Multiplicity="1" />
+          <End Type="modulo.RolUser" Role="RolUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RolUser">
+              <PropertyRef Name="RolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PermissionFormRolPermission">
+          <End Type="modulo.FormRolPermission" Role="FormRolPermission" Multiplicity="*" />
+          <End Type="modulo.Permission" Role="Permission" Multiplicity="1" />
+        </Association>
+        <Association Name="RolFormRolPermission">
+          <End Type="modulo.Rol" Role="Rol" Multiplicity="1" />
+          <End Type="modulo.FormRolPermission" Role="FormRolPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FormRolPermission">
+              <PropertyRef Name="RolId1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VehicleRegisteredVehicles">
+          <End Type="modulo.Vehicle" Role="Vehicle" Multiplicity="1" />
+          <End Type="modulo.RegisteredVehicles" Role="RegisteredVehicles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicle">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RegisteredVehicles">
+              <PropertyRef Name="VehicleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ModuleFormModule">
+          <End Type="modulo.Module" Role="Module" Multiplicity="1" />
+          <End Type="modulo.FormModule" Role="FormModule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FormModule">
+              <PropertyRef Name="ModuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FormsFormModule">
+          <End Type="modulo.Forms" Role="Forms" Multiplicity="1" />
+          <End Type="modulo.FormModule" Role="FormModule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Forms">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FormModule">
+              <PropertyRef Name="FormsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FormsFormRolPermission">
+          <End Type="modulo.Forms" Role="Forms" Multiplicity="1" />
+          <End Type="modulo.FormRolPermission" Role="FormRolPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Forms">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FormRolPermission">
+              <PropertyRef Name="FormsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VehicleTypeVehicle">
+          <End Type="modulo.Vehicle" Role="Vehicle" Multiplicity="1" />
+          <End Type="modulo.TypeVehicle" Role="TypeVehicle" Multiplicity="1" />
+        </Association>
+        <Association Name="ClientPerson">
+          <End Type="modulo.Client" Role="Client" Multiplicity="1" />
+          <End Type="modulo.Person" Role="Person" Multiplicity="1" />
+        </Association>
+        <Association Name="ParkingRates">
+          <End Type="modulo.Parking" Role="Parking" Multiplicity="1" />
+          <End Type="modulo.Rates" Role="Rates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parking">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Rates">
+              <PropertyRef Name="ParkingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ParkingCamara">
+          <End Type="modulo.Parking" Role="Parking" Multiplicity="1" />
+          <End Type="modulo.Camara" Role="Camara" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parking">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Camara">
+              <PropertyRef Name="ParkingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RegisteredVehiclesParking">
+          <End Type="modulo.RegisteredVehicles" Role="RegisteredVehicles" Multiplicity="*" />
+          <End Type="modulo.Parking" Role="Parking" Multiplicity="1" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="moduloStoreContainer" CdmEntityContainer="moduloContainer">
+    <EntitySetMapping Name="RatesSet">
+      <EntityTypeMapping TypeName="IsTypeOf(modulo.Rates)">
+        <MappingFragment StoreEntitySet="RatesSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TypeRateId" ColumnName="TypeRate" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="StartDuration" ColumnName="StartDuration" />
+          <ScalarProperty Name="EndDuration" ColumnName="EndDuration" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PersonSet">
+      <EntityTypeMapping TypeName="IsTypeOf(modulo.Person)">
+        <MappingFragment StoreEntitySet="PersonSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Document" ColumnName="Document" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MembershipsSet">
+      <EntityTypeMapping TypeName="IsTypeOf(modulo.Memberships)">
+        <MappingFragment StoreEntitySet="MembershipsSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="MembershipType" ColumnName="MembershipType" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="Start" ColumnName="Start" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BlackListSet">
+      <EntityTypeMapping TypeName="IsTypeOf(modulo.BlackList)">
+        <MappingFragment StoreEntitySet="BlackListSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="RestrictionDate" ColumnName="RestrictionDate" />
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VehicleSet">
+      <EntityTypeMapping TypeName="IsTypeOf(modulo.Vehicle)">
+        <MappingFragment StoreEntitySet="VehicleSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Plate" ColumnName="Plate" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ParkingHistorySet">
+      <EntityTypeMapping TypeName="IsTypeOf(modulo.ParkingHistory)">
+        <MappingFragment StoreEntitySet="ParkingHistorySet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="DepartureDate" ColumnName="DepartureDate" />
+          <ScalarProperty Name="TotalTime" ColumnName="TotalTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ParkingSet">
+      <EntityTypeMapping TypeName="IsTypeOf(modulo.Parking)">
+        <MappingFragment StoreEntitySet="ParkingSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Ability" ColumnName="Ability" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RegisteredVehiclesSet">
+      <EntityTypeMapping TypeName="IsTypeOf(modulo.RegisteredVehicles)">
+        <MappingFragment StoreEntitySet="RegisteredVehiclesSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDateTime" />
+          <ScalarProperty Name="ExitDate" ColumnName="ExitDateTime" />
+          <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ConfigurationRatesSet">
+      <EntityTypeMapping TypeName="IsTypeOf(modulo.ConfigurationRates)">
+        <MappingFragment StoreEntitySet="ConfigurationRatesSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="DurationApplied" ColumnName="DurationApplied" />
+          <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RolSet">
+      <EntityTypeMapping TypeName="IsTypeOf(modulo.Rol)">
+        <MappingFragment StoreEntitySet="RolSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserSet">
+      <EntityTypeMapping TypeName="IsTypeOf(modulo.User)">
+        <MappingFragment StoreEntitySet="UserSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PermissionSet">
+      <EntityTypeMapping TypeName="IsTypeOf(modulo.Permission)">
+        <MappingFragment StoreEntitySet="PermissionSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ModuleSet">
+      <EntityTypeMapping TypeName="IsTypeOf(modulo.Module)">
+        <MappingFragment StoreEntitySet="ModuleSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FormModuleSet">
+      <EntityTypeMapping TypeName="IsTypeOf(modulo.FormModule)">
+        <MappingFragment StoreEntitySet="FormModuleSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+          <ScalarProperty Name="FormsId" ColumnName="FormsId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CamaraSet">
+      <EntityTypeMapping TypeName="IsTypeOf(modulo.Camara)">
+        <MappingFragment StoreEntitySet="CamaraSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HighResolution" ColumnName="HighResolution" />
+          <ScalarProperty Name="HighShutterSpeed" ColumnName="HighShutterSpeed" />
+          <ScalarProperty Name="NightVisionInfrared" ColumnName="NightVisionInfrared" />
+          <ScalarProperty Name="OptimizedAngleOfSision" ColumnName="OptimizedAngleOfSision" />
+          <ScalarProperty Name="InfraredLighting" ColumnName="InfraredLighting" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ClientSet">
+      <EntityTypeMapping TypeName="IsTypeOf(modulo.Client)">
+        <MappingFragment StoreEntitySet="ClientSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FormsSet">
+      <EntityTypeMapping TypeName="IsTypeOf(modulo.Forms)">
+        <MappingFragment StoreEntitySet="FormsSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MembershipsVehicleSet">
+      <EntityTypeMapping TypeName="IsTypeOf(modulo.MembershipsVehicle)">
+        <MappingFragment StoreEntitySet="MembershipsVehicleSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="MembershipsId" ColumnName="MembershipsId" />
+          <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FormRolPermissionSet">
+      <EntityTypeMapping TypeName="IsTypeOf(modulo.FormRolPermission)">
+        <MappingFragment StoreEntitySet="FormRolPermissionSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PermissionId" ColumnName="PermissionId" />
+          <ScalarProperty Name="FormDTO" ColumnName="FormDTO" />
+          <ScalarProperty Name="RolId1" ColumnName="RolId1" />
+          <ScalarProperty Name="FormsId" ColumnName="FormsId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RolUserSet">
+      <EntityTypeMapping TypeName="IsTypeOf(modulo.RolUser)">
+        <MappingFragment StoreEntitySet="RolUserSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RolId" ColumnName="RolId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TypeRatesSet">
+      <EntityTypeMapping TypeName="IsTypeOf(modulo.TypeRates)">
+        <MappingFragment StoreEntitySet="TypeRatesSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TypeVehicleSet">
+      <EntityTypeMapping TypeName="IsTypeOf(modulo.TypeVehicle)">
+        <MappingFragment StoreEntitySet="TypeVehicleSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="UserPerson" TypeName="modulo.UserPerson" StoreEntitySet="UserSet">
+      <EndProperty Name="Person">
+        <ScalarProperty Name="Id" ColumnName="Person_Id" />
+      </EndProperty>
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="BlacklistClient" TypeName="modulo.BlacklistClient" StoreEntitySet="BlackListSet">
+      <EndProperty Name="Client">
+        <ScalarProperty Name="Id" ColumnName="Client_Id" />
+      </EndProperty>
+      <EndProperty Name="Blacklist">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="VehicleMembershipsVehicle" TypeName="modulo.VehicleMembershipsVehicle" StoreEntitySet="VehicleSet">
+      <EndProperty Name="MembershipsVehicle">
+        <ScalarProperty Name="Id" ColumnName="MembershipsVehicle_Id" />
+      </EndProperty>
+      <EndProperty Name="Vehicle">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserRolUser" TypeName="modulo.UserRolUser" StoreEntitySet="RolUserSet">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="User_Id" />
+      </EndProperty>
+      <EndProperty Name="RolUser">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="RatesTypeRates" TypeName="modulo.RatesTypeRates" StoreEntitySet="RatesSet">
+      <EndProperty Name="TypeRates">
+        <ScalarProperty Name="Id" ColumnName="TypeRates_Id" />
+      </EndProperty>
+      <EndProperty Name="Rates">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PermissionFormRolPermission" TypeName="modulo.PermissionFormRolPermission" StoreEntitySet="FormRolPermissionSet">
+      <EndProperty Name="Permission">
+        <ScalarProperty Name="Id" ColumnName="Permission_Id" />
+      </EndProperty>
+      <EndProperty Name="FormRolPermission">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fb638230928e49a9a0320bbe44d40e13" Name="Diagram1" ZoomLevel="63">
+        <EntityTypeShape EntityType="modulo.Rates" Width="1.5" PointX="20.125" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="modulo.Person" Width="1.5" PointX="7.5" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="modulo.Memberships" Width="1.5" PointX="12.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="modulo.BlackList" Width="1.5" PointX="9.875" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="modulo.Vehicle" Width="1.5" PointX="12.75" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="modulo.ParkingHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="modulo.Parking" Width="1.5" PointX="18.375" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="modulo.RegisteredVehicles" Width="1.5" PointX="15.25" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="modulo.ConfigurationRates" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="modulo.Rol" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="modulo.User" Width="1.5" PointX="5.25" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="modulo.Permission" Width="1.5" PointX="5.25" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="modulo.Module" Width="1.5" PointX="2.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="modulo.FormModule" Width="1.5" PointX="3" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="modulo.Camara" Width="1.5" PointX="20.25" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="modulo.Client" Width="1.5" PointX="10" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="modulo.Forms" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="modulo.MembershipsVehicle" Width="1.5" PointX="14.875" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="modulo.FormRolPermission" Width="1.5" PointX="2.875" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="modulo.RolUser" Width="1.5" PointX="3" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="modulo.TypeRates" Width="1.5" PointX="22.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="modulo.TypeVehicle" Width="1.5" PointX="12.75" PointY="15.5" IsExpanded="true" />
+        <AssociationConnector Association="modulo.UserPerson" ManuallyRouted="false" />
+        <AssociationConnector Association="modulo.ClientVehicle" ManuallyRouted="false" />
+        <AssociationConnector Association="modulo.BlacklistClient" ManuallyRouted="false" />
+        <AssociationConnector Association="modulo.MembershipsMembershipsVehicle" ManuallyRouted="false" />
+        <AssociationConnector Association="modulo.VehicleMembershipsVehicle" ManuallyRouted="false" />
+        <AssociationConnector Association="modulo.UserRolUser" ManuallyRouted="false" />
+        <AssociationConnector Association="modulo.RatesTypeRates" ManuallyRouted="false" />
+        <AssociationConnector Association="modulo.RolRolUser" ManuallyRouted="false" />
+        <AssociationConnector Association="modulo.PermissionFormRolPermission" ManuallyRouted="false" />
+        <AssociationConnector Association="modulo.RolFormRolPermission" ManuallyRouted="false" />
+        <AssociationConnector Association="modulo.VehicleRegisteredVehicles" ManuallyRouted="false" />
+        <AssociationConnector Association="modulo.ModuleFormModule" ManuallyRouted="false" />
+        <AssociationConnector Association="modulo.FormsFormModule" ManuallyRouted="false" />
+        <AssociationConnector Association="modulo.FormsFormRolPermission" ManuallyRouted="false" />
+        <AssociationConnector Association="modulo.VehicleTypeVehicle" />
+        <AssociationConnector Association="modulo.ClientPerson" />
+        <AssociationConnector Association="modulo.ParkingRates" />
+        <AssociationConnector Association="modulo.ParkingCamara" />
+        <AssociationConnector Association="modulo.RegisteredVehiclesParking" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
