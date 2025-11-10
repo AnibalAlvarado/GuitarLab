@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Dynamic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,6 +52,10 @@ namespace Data.Implementations
 
             await _auditService.SaveAuditAsync(entry);
         }
+        public override async Task<bool> ExistsAsync(Expression<Func<T, bool>> predicate)
+        {
+            return await _context.Set<T>().AnyAsync(predicate);
+        }
 
         public override async Task<IEnumerable<T>> GetAll()
         {
@@ -80,7 +85,7 @@ namespace Data.Implementations
 
             try
             {
-                var entity = await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync(i => i.Id == id);
+                var entity = await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync(i => i.Id == id && i.IsDeleted == false);
 
                 // Auditar acción GetById, enviamos la entidad si la encontró
                 //await AuditAsync("GetById", id);

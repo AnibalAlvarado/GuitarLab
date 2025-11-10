@@ -1,6 +1,5 @@
 ﻿using Entity.Dtos;
-using Entity.DTOs;
-using Entity.Model;
+using Entity.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +10,7 @@ namespace Business.Interfaces
 {
     public interface IUserBusiness : IRepositoryBusiness<User, UserDto>
     {
-        Task<UserResponseDto?> ValidateUserAsync(string username, string password);
-        Task AssignDefaultRoleAsync(int userId);
-        Task SendWelcomeEmailAsync(string to);
+        Task<UserDto> LoginUser(LoginRequestDto loginDto);
+        Task<UserDto> RegisterAsync(RegisterRequestDto dto);
     }
 }

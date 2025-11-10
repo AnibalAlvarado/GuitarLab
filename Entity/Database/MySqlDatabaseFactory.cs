@@ -1,9 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
 namespace Entity.Database
 {
@@ -15,13 +11,18 @@ namespace Entity.Database
         public string ProviderName => "MySql";
 
         /// <summary>
-        /// Configura las opciones para usar MySQL como proveedor.
+        /// Configura las opciones para usar MySQL (Pomelo) como proveedor.
         /// </summary>
         /// <param name="options">Builder de opciones de contexto.</param>
-        /// <param name="connectionString">String de conexión a MySQL.</param>
+        /// <param name="connectionString">String de conexión a MySQL/MariaDB.</param>
         public void Configure(DbContextOptionsBuilder options, string connectionString)
         {
-            options.UseMySQL(connectionString);
+            options.UseMySql(
+                connectionString,
+                ServerVersion.AutoDetect(connectionString),
+                mySqlOptions => mySqlOptions
+                    .EnableRetryOnFailure()  // reintentos automáticos
+            );
         }
     }
 }

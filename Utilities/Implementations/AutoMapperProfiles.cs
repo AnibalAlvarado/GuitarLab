@@ -25,7 +25,7 @@ namespace Utilities.Implementations
             CreateMap<GuitaristLesson, GuitaristLessonDto>().ReverseMap();
             CreateMap<Tuning, TuningDto>().ReverseMap();
             CreateMap<Technique, TechniqueDto>().ReverseMap();
-
+            CreateMap<User, UserDto>().ReverseMap();
         }
     }
 }

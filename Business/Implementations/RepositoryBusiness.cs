@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Utilities.Exceptions;
@@ -24,6 +25,18 @@ namespace Business.Implementations
         {
             _data = data;
             _mapper = mapper;
+        }
+
+        public override async Task<bool> ExistsAsync(Expression<Func<T, bool>> predicate)
+        {
+            try
+            {
+                return await _data.ExistsAsync(predicate);
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessException("Error al validar existencia de la entidad.", ex);
+            }
         }
 
         public override async Task<bool> PermanentDelete(int id)

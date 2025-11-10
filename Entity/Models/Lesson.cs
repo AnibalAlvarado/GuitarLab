@@ -12,7 +12,7 @@ namespace Entity.Models
         public int TechniqueId { get; set; }
 
         // Relaciones
-        public Technique Technique { get; set; } = new Technique();
+        public Technique Technique { get; set; }
         public List<GuitaristLesson> GuitaristLessons { get; set; } = new List<GuitaristLesson>();
         public List<LessonExercise> LessonExercises { get; set; } = new List<LessonExercise>();
     }

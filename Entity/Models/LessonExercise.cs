@@ -12,7 +12,7 @@ namespace Entity.Models
         public int ExerciseId { get; set; }
 
         // Relaciones
-        public Lesson Lesson { get; set; } = new Lesson();
-        public Exercise Exercise { get; set; } = new Exercise();
+        public Lesson Lesson { get; set; }
+        public Exercise Exercise { get; set; }
     }
 }

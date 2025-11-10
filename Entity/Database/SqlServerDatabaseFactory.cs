@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,8 @@ namespace Entity.Database
         /// <param name="connectionString">String de conexión a SQL Server.</param>
         public void Configure(DbContextOptionsBuilder options, string connectionString)
         {
-            options.UseSqlServer(connectionString);
+            options.UseSqlServer(connectionString)
+            .ConfigureWarnings(w => w.Ignore(RelationalEventId.PendingModelChangesWarning));
         }
     }
 }

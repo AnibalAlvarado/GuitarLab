@@ -16,7 +16,7 @@ namespace Entity.Models
         public int TuningId { get; set; }
 
         // Relaciones
-        public Tuning Tuning { get; set; } = new Tuning();
+        public Tuning Tuning { get; set; }
         public List<LessonExercise> LessonExercises { get; set; } = new List<LessonExercise>();
     }
 }

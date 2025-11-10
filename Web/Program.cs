@@ -1,28 +1,38 @@
-﻿using Entity.Contexts;
+﻿using Entity.Context;
+using Entity.Contexts;
+using Entity.Dtos.Config;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Migrations;
 using System.Text.Json.Serialization;
 using Utilities.Implementations;
 using Utilities.Interfaces;
 using Web;
-using Web.Config;
 using Web.Extensions;
+using Web.Middleware;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+
+//postgres migrations
+//Add-Migration InitDbPostgres -StartupProject Web -Project Entity -Context ApplicationDbContextPostgreSql -OutputDir Migrations/PostgreSql
+// sqlserver migrations
+//Add-Migration InitDbSqlServer -StartupProject Web -Project Entity -Context ApplicationDbContextSqlServer -OutputDir Migrations/SqlServer
+//mysql migrations
+//Add-Migration InitDbMysql -StartupProject Web -Project Entity -Context ApplicationDbContextMySql -OutputDir Migrations/MySql
+
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddHttpContextAccessor();
 // Controllers
 builder.Services.AddControllers();
 
 //swager
 builder.Services.AddCustomSwagger();
 
-
-// JWT Authentication
+//Jwt y Cookie
 builder.Services.AddJwtAuthentication(builder.Configuration);
-builder.Services.AddScoped<IJwtAuthenticationService, JwtAuthenticatonService>();
-
-builder.Services.AddHttpContextAccessor();
-// CORS
 builder.Services.AddCustomCors(builder.Configuration);
+
+builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("Jwt"));
+builder.Services.Configure<CookieSettings>(builder.Configuration.GetSection("Cookie"));
 
 // extensión para la base de datos
 builder.Services.AddDatabase(builder.Configuration);
@@ -36,6 +46,11 @@ builder.Services.AddSwaggerGen();
 
 
 var app = builder.Build();
+
+app.UseMiddleware<DbContextMiddleware>();
+MigrationManager.MigrateAllDatabases(app.Services, builder.Configuration);
+
+
 app.UseSwagger();
 app.UseSwaggerUI(options =>
 {
@@ -55,8 +70,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseCors();
 app.UseAuthentication();
+app.UseCors();
 app.UseAuthorization();
 app.MapControllers();
 app.Run();

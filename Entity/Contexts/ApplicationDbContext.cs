@@ -1,6 +1,8 @@
 ﻿using Dapper;
 using Entity.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.Extensions.Configuration;
@@ -25,17 +27,27 @@ namespace Entity.Contexts
         /// Configuración de la aplicación.
         /// </summary>
         protected readonly IConfiguration _configuration;
+        private readonly IHttpContextAccessor _http;
 
         /// <summary>
         /// Constructor del contexto de la base de datos.
         /// </summary>
         /// <param name="options">Opciones de configuración para el contexto de base de datos.</param>
         /// <param name="configuration">Instancia de IConfiguration para acceder a la configuración de la aplicación.</param>
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IConfiguration configuration)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IConfiguration configuration, IHttpContextAccessor httpContextAccessor)
         : base(options)
         {
             _configuration = configuration;
+            _http = httpContextAccessor;
         }
+
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+    : base(options)
+        {
+            // ⚠️ NO uses aquí _configuration ni _httpContextAccessor
+            // Este constructor es solo para design-time (Add-Migration)
+        }
+
 
         ///
         /// DB SETS
@@ -48,13 +60,20 @@ namespace Entity.Contexts
         public DbSet<Tuning> Tunings { get; set; }
         public DbSet<GuitaristLesson> GuitaristLessons { get; set; }
         public DbSet<LessonExercise> LessonExercises { get; set; }
-
+        public DbSet<User> Users { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            if (!optionsBuilder.IsConfigured)
+            {
+                // 🧩 Ignorar el warning de modelo pendiente globalmente
+                optionsBuilder.ConfigureWarnings(w =>
+                    w.Ignore(RelationalEventId.PendingModelChangesWarning));
+            }
             // No es necesario configurar el proveedor aquí, ya que se hace a través de la fábrica
             optionsBuilder.EnableSensitiveDataLogging();
+            base.OnConfiguring(optionsBuilder);
         }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 

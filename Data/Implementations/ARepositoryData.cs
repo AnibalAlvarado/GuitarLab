@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,6 +15,7 @@ namespace Data.Implementations
 {
     public abstract class ARepositoryData<T> : IRepositoryData<T> where T : BaseModel
     {
+        public abstract Task<bool> ExistsAsync(Expression<Func<T, bool>> predicate);
         /// <summary>
         /// Obtener
         /// </summary>

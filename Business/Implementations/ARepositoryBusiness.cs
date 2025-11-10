@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,6 +13,7 @@ namespace Business.Implementations
 {
     public abstract class ARepositoryBusiness<T,D> : IRepositoryBusiness<T,D> where T : BaseModel where D : BaseDto
     {
+        public abstract Task<bool> ExistsAsync(Expression<Func<T, bool>> predicate);
         /// <summary>
         /// Obtener 
         /// </summary>

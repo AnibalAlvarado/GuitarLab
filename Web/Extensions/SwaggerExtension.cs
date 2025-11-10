@@ -1,68 +1,77 @@
-﻿using Microsoft.OpenApi.Models;
+﻿using Entity.Database; // donde está tu enum DatabaseType
+using Entity.Enums;
+using Microsoft.OpenApi.Any;
+using Microsoft.OpenApi.Models;
 
 namespace Web.Extensions
 {
-    public static class SwaggerExtension
+    public static class SwaggerService
     {
         public static IServiceCollection AddCustomSwagger(this IServiceCollection services)
         {
             services.AddEndpointsApiExplorer();
-
-            services.AddSwaggerGen(options =>
+            services.AddSwaggerGen(c =>
             {
-                // Documento principal de Swagger
-                options.SwaggerDoc("v1", new OpenApiInfo
+                c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "Security API",
+                    Title = "GuitarLab API",
                     Version = "v1",
-                    Description = "API para gestión de usuarios, roles y permisos",
-                    Contact = new OpenApiContact
+                    Description = "API para gestión de usuarios y guitarristas",
+                });
+
+                // ============================================================
+                // 🔒 JWT Bearer
+                // ============================================================
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Description = "Ingrese el token JWT como: Bearer {token}"
+                });
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
                     {
-                        Name = "Tu Nombre",
-                        Email = "tuemail@ejemplo.com",
-                        Url = new Uri("https://tusitio.com")
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        Array.Empty<string>()
                     }
                 });
 
-                // Incluir documentación XML si está habilitada
-                var xmlFilename = $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFilename);
-                if (File.Exists(xmlPath))
+                // ============================================================
+                // 🧩 CABECERA PERSONALIZADA: X-DB-Provider (con enum)
+                // ============================================================
+                c.AddSecurityDefinition("DbProvider", new OpenApiSecurityScheme
                 {
-                    options.IncludeXmlComments(xmlPath, includeControllerXmlComments: true);
-                }
-
-                // Soporte para enums como string
-                options.UseInlineDefinitionsForEnums();
-
-                // JWT Bearer auth
-                options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-                {
-                    Name = "Authorization",
-                    Description = "Introduce el token JWT como: Bearer {token}",
+                    Name = "X-DB-Provider",
+                    Type = SecuritySchemeType.ApiKey,
                     In = ParameterLocation.Header,
-                    Type = SecuritySchemeType.Http,
-                    Scheme = "bearer",
-                    BearerFormat = "JWT"
+                    Description = $"Selecciona el proveedor de base de datos. Valores posibles: {string.Join(", ", Enum.GetNames(typeof(DatabaseType)))}"
                 });
 
-                options.AddSecurityRequirement(new OpenApiSecurityRequirement
-            {
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
-                    new OpenApiSecurityScheme
                     {
-                        Reference = new OpenApiReference
+                        new OpenApiSecurityScheme
                         {
-                            Type = ReferenceType.SecurityScheme,
-                            Id = "Bearer"
-                        }
-                    },
-                    Array.Empty<string>()
-                }
-            });
-
-                // Soporte para atributos como [FromHeader], [FromQuery], etc.
-                options.SupportNonNullableReferenceTypes();
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "DbProvider"
+                            }
+                        },
+                        Array.Empty<string>()
+                    }
+                });
             });
 
             return services;

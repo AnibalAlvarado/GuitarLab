@@ -1,9 +1,14 @@
 ﻿using Entity.Contexts;
 using Entity.Database;
-using Entity.Model;
+using Entity.Enums;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Utilities.Audit.Factory;
 using Utilities.Audit.Services;
+using Web.Infrastructure;
 
 namespace Web.Extensions
 {
@@ -11,37 +16,45 @@ namespace Web.Extensions
     {
         public static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
         {
-            // 🧱 Fábricas de bases de datos
+            // 🧱 Registrar fábricas de base de datos
             services.AddSingleton<IDatabaseFactory, SqlServerDatabaseFactory>();
             services.AddSingleton<IDatabaseFactory, PostgreSqlDatabaseFactory>();
             services.AddSingleton<IDatabaseFactory, MySqlDatabaseFactory>();
 
-            // 📦 Proveedor de fábricas
             services.AddSingleton<DatabaseFactoryProvider>();
+            services.AddSingleton<DbContextFactory>();
 
-            // 🔧 Configuración del proveedor
-            string databaseProvider = configuration["DatabaseProvider"];
-            if (string.IsNullOrEmpty(databaseProvider))
+            // ✅ Aquí está el truco:
+            // Registramos ApplicationDbContext pero usando un factory dinámico que lee el provider actual
+            services.AddScoped<ApplicationDbContext>(sp =>
             {
-                throw new InvalidOperationException("El proveedor de base de datos no está especificado en la configuración.");
-            }
+                var httpContextAccessor = sp.GetRequiredService<IHttpContextAccessor>();
+                var config = sp.GetRequiredService<IConfiguration>();
+                var factoryProvider = sp.GetRequiredService<DatabaseFactoryProvider>();
 
-            // 🔐 Cadena de conexión
-            string connectionString = configuration.GetConnectionString(databaseProvider);
-            if (string.IsNullOrEmpty(connectionString))
-            {
-                throw new InvalidOperationException($"La cadena de conexión para el proveedor '{databaseProvider}' no está configurada.");
-            }
+                // 🔍 Leer provider del contexto HTTP (si viene en el header)
+                var providerFromRequest = httpContextAccessor.HttpContext?.Items["DbProvider"] as DatabaseType?;
 
-            // 🎯 Configuración del ApplicationDbContext
-            services.AddDbContext<ApplicationDbContext>((serviceProvider, options) =>
-            {
-                var factoryProvider = serviceProvider.GetRequiredService<DatabaseFactoryProvider>();
-                var factory = factoryProvider.GetFactory(databaseProvider);
-                factory.Configure(options, connectionString);
+                DatabaseType provider = providerFromRequest ??
+                    (Enum.TryParse(config["DatabaseProvider"], ignoreCase: true, out DatabaseType parsed)
+                        ? parsed
+                        : DatabaseType.SqlServer);
+
+                var connectionString = config.GetConnectionString(provider.ToString());
+                if (string.IsNullOrEmpty(connectionString))
+                    throw new InvalidOperationException($"No se encontró cadena de conexión para '{provider}'.");
+
+                var factory = factoryProvider.GetFactory(provider.ToString());
+                var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
+                factory.Configure(optionsBuilder, connectionString);
+
+                var logger = sp.GetRequiredService<ILoggerFactory>().CreateLogger("DbContextFactory");
+                logger.LogInformation("🔄 Creando ApplicationDbContext dinámico con provider: {Provider}", provider);
+
+                return new ApplicationDbContext(optionsBuilder.Options, config, httpContextAccessor);
             });
 
-            // ✅ Registro para auditoría
+            // ✅ Auditoría
             services.AddSingleton<Entity.Database.AuditDbContextFactory>();
             services.AddSingleton<IAuditStrategyFactory, AuditStrategyFactory>();
             services.AddScoped<IAuditService, AuditService>();

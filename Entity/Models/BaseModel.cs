@@ -9,7 +9,7 @@ namespace Entity.Models
     public abstract class BaseModel
     {
         public int Id { get; set; }
-        public bool Asset { get; set; }
+        public bool Asset { get; set; } = true;
         public bool IsDeleted { get; set; } = false;
     }
 }

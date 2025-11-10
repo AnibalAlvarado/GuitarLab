@@ -1,22 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Utilities.Interfaces;
-using Microsoft.AspNetCore.Identity;
-using Entity.Models;
+﻿using Utilities.Interfaces;
 
 namespace Utilities.Implementations
 {
     public class PasswordHasher : IPasswordHasher
     {
-        private readonly PasswordHasher<Guitarist> _hasher = new();
+        private const int DefaultWorkFactor = 12;
+
+        public string HashPassword(string password)
+        {
+            // Genera el hash con el work factor definido
+            return BCrypt.Net.BCrypt.HashPassword(password, workFactor: DefaultWorkFactor);
+        }
 
         public bool VerifyHashedPassword(string hashedPassword, string providedPassword)
         {
-            var result = _hasher.VerifyHashedPassword(null, hashedPassword, providedPassword);
-            return result == PasswordVerificationResult.Success;
+            // Verifica si la contraseña coincide con el hash
+            return BCrypt.Net.BCrypt.Verify(providedPassword, hashedPassword);
         }
     }
 }

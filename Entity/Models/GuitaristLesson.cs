@@ -16,7 +16,7 @@ namespace Entity.Models
         public double ProgressPercent { get; set; } = 0;
 
         // Relaciones
-        public Guitarist Guitarist { get; set; } = new Guitarist();
-        public Lesson Lesson { get; set; } = new Lesson();
+        public Guitarist Guitarist { get; set; }
+        public Lesson Lesson { get; set; }
     }
 }

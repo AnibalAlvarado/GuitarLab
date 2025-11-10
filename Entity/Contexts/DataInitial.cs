@@ -9,12 +9,25 @@ namespace Entity.Contexts
         public static void Data(ModelBuilder modelBuilder)
         {
             // ==========================
+            //  USERS
+            // ==========================
+            modelBuilder.Entity<User>().HasData(
+                // password: Anibal123!
+                new User { Id = 1, Username = "anibal25", Password = "$2a$12$tWJFKE5AxcI22akEUprqMuJoQ0QXLUbAg4FRklLYTQQc1dGCv1AlW", Email="anibalalvaradoandrade@gmail.com", GuitaristId = 1 },
+                // password: Carva123!
+                new User { Id = 2, Username = "carvaInsane", Password = "$2a$12$AyTpx8lEKlO9F9ltw5b8j.hGYJ44gK5pFL.ATJNYshNP6PswzOpPa", Email = "carva@gmail.com", GuitaristId = 2 },
+                // password: Viego123!
+                new User { Id = 3, Username = "viego", Password = "$2a$12$qq6J.RdSq1OTx8hLUGI5huNP9eL.zwD/Ev0QA2ZJ6W3z1YBW0Yo4W", Email = "viego@gmail.com", GuitaristId = 3 }
+            );
+            // ==========================
+
+            // ==========================
             // 🎸 GUITARISTS
             // ==========================
             modelBuilder.Entity<Guitarist>().HasData(
-                new Guitarist { Id = 1, Name = "Aníbal Alvarado", SkillLevel = SkillLevel.Advanced, ExperienceYears = 10 },
-                new Guitarist { Id = 2, Name = "Karol Natalia Osorio", SkillLevel = SkillLevel.Intermediate, ExperienceYears = 4 },
-                new Guitarist { Id = 3, Name = "Yerson Stiven Cuellar", SkillLevel = SkillLevel.Beginner, ExperienceYears = 2 }
+                new Guitarist { Id = 1, Name = "Aníbal Alvarado Andrade", SkillLevel = SkillLevel.Advanced, ExperienceYears = 5 },
+                new Guitarist { Id = 2, Name = "Brayan Stiven Carvajal", SkillLevel = SkillLevel.Intermediate, ExperienceYears = 1 },
+                new Guitarist { Id = 3, Name = "Diego Fernando Cuellar", SkillLevel = SkillLevel.Beginner, ExperienceYears = 1 }
             );
 
             // ==========================
@@ -130,26 +143,26 @@ E|------------------|",
             // ==========================
             modelBuilder.Entity<LessonExercise>().HasData(
                 // Lesson 1 → Alternate Picking
-                new LessonExercise { LessonId = 1, ExerciseId = 1 },
-                new LessonExercise { LessonId = 1, ExerciseId = 4 },
+                new LessonExercise { Id = 1, LessonId = 1, ExerciseId = 1 },
+                new LessonExercise { Id = 2, LessonId = 1, ExerciseId = 4 },
 
                 // Lesson 2 → Legato
-                new LessonExercise { LessonId = 2, ExerciseId = 2 },
-                new LessonExercise { LessonId = 2, ExerciseId = 5 },
+                new LessonExercise { Id = 3, LessonId = 2, ExerciseId = 2 },
+                new LessonExercise { Id = 4, LessonId = 2, ExerciseId = 5 },
 
                 // Lesson 3 → Sweep
-                new LessonExercise { LessonId = 3, ExerciseId = 3 }
+                new LessonExercise { Id = 5, LessonId = 3, ExerciseId = 3 }
             );
 
             // ==========================
             // 👨‍🎓 GUITARIST-LESSON (Pivot)
             // ==========================
             modelBuilder.Entity<GuitaristLesson>().HasData(
-                new GuitaristLesson { GuitaristId = 1, LessonId = 1, Status = LessonStatus.Completed, ProgressPercent = 100 },
-                new GuitaristLesson { GuitaristId = 1, LessonId = 2, Status = LessonStatus.InProgress, ProgressPercent = 60 },
-                new GuitaristLesson { GuitaristId = 2, LessonId = 1, Status = LessonStatus.InProgress, ProgressPercent = 40 },
-                new GuitaristLesson { GuitaristId = 2, LessonId = 3, Status = LessonStatus.NotStarted, ProgressPercent = 0 },
-                new GuitaristLesson { GuitaristId = 3, LessonId = 2, Status = LessonStatus.NotStarted, ProgressPercent = 0 }
+                new GuitaristLesson { Id = 1, GuitaristId = 1, LessonId = 1, Status = LessonStatus.Completed, ProgressPercent = 100 },
+                new GuitaristLesson { Id = 2, GuitaristId = 1, LessonId = 2, Status = LessonStatus.InProgress, ProgressPercent = 60 },
+                new GuitaristLesson { Id = 3, GuitaristId = 2, LessonId = 1, Status = LessonStatus.InProgress, ProgressPercent = 40 },
+                new GuitaristLesson { Id = 4, GuitaristId = 2, LessonId = 3, Status = LessonStatus.NotStarted, ProgressPercent = 0 },
+                new GuitaristLesson { Id = 5, GuitaristId = 3, LessonId = 2, Status = LessonStatus.NotStarted, ProgressPercent = 0 }
             );
         }
     }

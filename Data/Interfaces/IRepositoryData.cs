@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,7 +12,7 @@ namespace Data.Interfaces
 {
     public interface IRepositoryData<T> where T : BaseModel
     {
-
+        Task<bool> ExistsAsync(Expression<Func<T, bool>> predicate);
         /// <summary>
         /// Obtener
         /// </summary>
