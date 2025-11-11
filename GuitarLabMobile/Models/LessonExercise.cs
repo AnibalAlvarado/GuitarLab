@@ -1,0 +1,18 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace GuitarLabMobile.Models
+{
+    public class LessonExercise : BaseModel
+    {
+        public int LessonId { get; set; }
+        public int ExerciseId { get; set; }
+
+        // Relaciones
+        public Lesson Lesson { get; set; }
+        public Exercise Exercise { get; set; }
+    }
+}

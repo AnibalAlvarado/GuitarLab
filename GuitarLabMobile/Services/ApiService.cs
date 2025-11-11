@@ -1,6 +1,6 @@
 using System.Net;
 using System.Net.Http.Json;
-using Entity.Dtos;
+using GuitarLabMobile.Dtos;
 
 namespace GuitarLabMobile.Services
 {

@@ -1,4 +1,4 @@
-using Entity.Dtos;
+using GuitarLabMobile.Dtos;
 using GuitarLabMobile.Services;
 using Microsoft.Maui.Controls;
 
@@ -34,7 +34,6 @@ namespace GuitarLabMobile.Views
             if (exercise != null)
             {
                 NameLabel.Text = exercise.Name;
-                DescriptionLabel.Text = exercise.Description;
                 DifficultyLabel.Text = exercise.DifficultyName;
                 BPMLabel.Text = exercise.BPM.ToString();
                 TuningLabel.Text = exercise.Tuning;

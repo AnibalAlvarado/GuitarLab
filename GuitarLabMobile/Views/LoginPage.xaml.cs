@@ -1,4 +1,4 @@
-using Entity.Dtos;
+using GuitarLabMobile.Dtos;
 using GuitarLabMobile.Services;
 using Microsoft.Maui.Controls;
 
