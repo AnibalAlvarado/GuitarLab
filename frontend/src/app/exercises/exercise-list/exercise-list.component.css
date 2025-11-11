@@ -1,0 +1,432 @@
+.exercise-page {
+  min-height: 100vh;
+  padding: 40px 80px;
+  background: linear-gradient(135deg, #1a0b2e 0%, #2e026d 50%, #4a0e78 100%);
+  color: #f0f0f0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.exercise-page::before {
+  content: '';
+  position: fixed;
+  top: -50%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(138, 43, 226, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: float 20s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-30px) rotate(5deg); }
+}
+
+/* Header */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.header-left h1 {
+  font-size: 2.8rem;
+  margin: 0;
+  font-weight: 700;
+  background: linear-gradient(135deg, #fff 0%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.5px;
+}
+
+.header-left p {
+  color: #b8b8d1;
+  margin: 8px 0 0 0;
+  font-size: 1.05rem;
+  font-weight: 400;
+}
+
+.header-right {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+mat-flat-button {
+  font-weight: 600;
+  border-radius: 12px;
+  padding: 12px 24px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+mat-flat-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(138, 43, 226, 0.4);
+}
+
+mat-flat-button mat-icon {
+  margin-right: 6px;
+}
+
+/* Toolbar */
+.toolbar {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.search-box {
+  width: 320px;
+  transition: width 0.3s ease;
+}
+
+.search-box:focus-within {
+  width: 380px;
+}
+
+.search-box .mat-form-field-wrapper {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+}
+
+.search-box input {
+  color: #fff;
+}
+
+.search-box mat-label {
+  color: #c7c7c7;
+}
+
+/* Grid Layout */
+.exercise-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 28px;
+  padding-top: 10px;
+}
+
+.exercise-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 24px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.exercise-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #8b5cf6, #ec4899);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.exercise-card:hover::before {
+  opacity: 1;
+}
+
+.exercise-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 35px rgba(138, 43, 226, 0.3);
+  border-color: rgba(139, 92, 246, 0.3);
+}
+
+/* Card content */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.card-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #fff;
+  font-weight: 600;
+  line-height: 1.3;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.bpm {
+  color: #c7c7d8;
+  margin: 0 0 20px 0;
+  font-size: 1.05rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Chips for difficulty */
+.chip {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: #fff;
+  text-transform: capitalize;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  flex-shrink: 0;
+}
+
+.easy {
+  background: linear-gradient(135deg, #43a047, #66bb6a);
+}
+
+.medium {
+  background: linear-gradient(135deg, #fbc02d, #fdd835);
+  color: #222;
+}
+
+.hard {
+  background: linear-gradient(135deg, #ef6c00, #ff9800);
+}
+
+.expert {
+  background: linear-gradient(135deg, #8e24aa, #ab47bc);
+}
+
+/* Card Actions */
+.card-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 12px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.exercise-card:hover .card-actions {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card-actions button {
+  background: rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+}
+
+.card-actions button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+/* Loading / Empty */
+.loading,
+.empty {
+  text-align: center;
+  padding: 100px 20px;
+  color: #b8b8d1;
+}
+
+.loading mat-spinner {
+  margin: 0 auto 20px;
+}
+
+.loading p,
+.empty p {
+  font-size: 1.1rem;
+  margin-top: 16px;
+  font-weight: 500;
+}
+
+.empty mat-icon {
+  font-size: 80px;
+  width: 80px;
+  height: 80px;
+  color: rgba(255, 255, 255, 0.2);
+  margin-bottom: 16px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .exercise-page {
+    padding: 24px 20px;
+  }
+
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .header-left h1 {
+    font-size: 2.2rem;
+  }
+
+  .search-box,
+  .search-box:focus-within {
+    width: 100%;
+  }
+
+  .exercise-grid {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+  }
+
+  .card-actions {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .exercise-page {
+    padding: 20px 16px;
+  }
+
+  .header-left h1 {
+    font-size: 1.9rem;
+  }
+
+  .exercise-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Íconos visibles sobre fondo oscuro */
+.bpm-icon {
+  color: #a78bfa;
+  font-size: 20px;
+}
+
+.card-actions button.mat-icon-button {
+  color: #cfcfff;
+  background: rgba(255, 255, 255, 0.08);
+  transition: all 0.25s ease;
+}
+
+.card-actions button.mat-icon-button:hover {
+  transform: scale(1.15);
+}
+
+/* Colores diferenciados */
+.card-actions .edit:hover mat-icon {
+  color: #7dd3fc; /* celeste */
+}
+
+.card-actions .delete:hover mat-icon {
+  color: #f87171; /* rojo */
+}
+
+/* Para cuando los íconos están apagados */
+.card-actions mat-icon {
+  transition: color 0.2s ease;
+  color: #bdbdbd;
+}
+
+/* Mejora visual de los chips */
+.chip {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.easy {
+  background: linear-gradient(135deg, #43a047, #66bb6a);
+}
+
+.medium {
+  background: linear-gradient(135deg, #fbc02d, #fdd835);
+  color: #222;
+}
+
+.hard {
+  background: linear-gradient(135deg, #ef6c00, #ff9800);
+}
+
+.expert {
+  background: linear-gradient(135deg, #8e24aa, #ab47bc);
+}
+
+/* Hover general */
+.exercise-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 12px 25px rgba(168, 85, 247, 0.3);
+  transform: translateY(-4px);
+  border-color: rgba(168, 85, 247, 0.3);
+}
+
+/* Estilos globales para Material Select */
+.mat-mdc-select-panel {
+  background: rgba(30, 15, 60, 0.98) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 12px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
+}
+
+.mat-mdc-option {
+  color: #fff !important;
+  transition: all 0.2s ease;
+}
+
+.mat-mdc-option:hover {
+  background: rgba(139, 92, 246, 0.2) !important;
+}
+
+.mat-mdc-option.mat-mdc-option-active,
+.mat-mdc-option.mdc-list-item--selected {
+  background: rgba(139, 92, 246, 0.3) !important;
+  color: #fff !important;
+}
+
+.mat-mdc-option .mdc-list-item__primary-text {
+  color: #fff !important;
+}
+
+/* Para el texto seleccionado en el input */
+.mat-mdc-select-value-text {
+  color: #fff !important;
+}
+/* ✅ Forzar color blanco en los selects cerrados (difficulty y tuning) */
+.mat-mdc-select-value,
+.mat-mdc-select-arrow,
+.mat-mdc-select-placeholder {
+  color: #fff !important;
+  opacity: 0.9;
+}
+
+.mat-mdc-form-field.mat-focused .mat-mdc-select-value {
+  color: #fff !important;
+}
+
+/* Ícono de flecha del select (↓) */
+.mat-mdc-select-arrow svg {
+  fill: #fff !important;
+  opacity: 0.8;
+}

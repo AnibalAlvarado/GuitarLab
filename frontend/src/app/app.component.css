@@ -1,0 +1,135 @@
+/* Toolbar Container */
+mat-toolbar {
+  background: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  color: #fff !important;
+  padding: 0 80px !important;
+  height: 70px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Brand/Logo */
+mat-toolbar span:first-child {
+  font-size: 1.6rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #fff 0%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+mat-toolbar span:first-child::before {
+  content: '🎸';
+  font-size: 1.8rem;
+  -webkit-text-fill-color: initial;
+}
+
+/* Spacer */
+.spacer {
+  flex: 1 1 auto;
+}
+
+/* Toolbar Buttons */
+mat-toolbar button[mat-button] {
+  color: #e0e0e0 !important;
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 8px 20px;
+  margin: 0 4px;
+  border-radius: 10px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+mat-toolbar button[mat-button]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(139, 92, 246, 0.15);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 10px;
+}
+
+mat-toolbar button[mat-button]:hover {
+  background: rgba(139, 92, 246, 0.2) !important;
+  color: #fff !important;
+  transform: translateY(-2px);
+}
+
+mat-toolbar button[mat-button]:hover::before {
+  opacity: 1;
+}
+
+/* Active route styling */
+mat-toolbar button[mat-button].active,
+mat-toolbar button[mat-button][routerLinkActive="active"] {
+  background: rgba(139, 92, 246, 0.3) !important;
+  color: #fff !important;
+  font-weight: 600;
+}
+
+/* Logout button special styling */
+mat-toolbar button[mat-button]:last-child {
+  background: rgba(220, 53, 69, 0.15);
+  border: 1px solid rgba(220, 53, 69, 0.3);
+}
+
+mat-toolbar button[mat-button]:last-child:hover {
+  background: rgba(220, 53, 69, 0.25) !important;
+  border-color: rgba(220, 53, 69, 0.5);
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  mat-toolbar {
+    padding: 0 20px !important;
+    height: auto;
+    min-height: 64px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  mat-toolbar span:first-child {
+    font-size: 1.3rem;
+  }
+
+  mat-toolbar span:first-child::before {
+    font-size: 1.5rem;
+  }
+
+  mat-toolbar button[mat-button] {
+    font-size: 0.9rem;
+    padding: 6px 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  mat-toolbar {
+    padding: 0 16px !important;
+  }
+
+  mat-toolbar span:first-child {
+    font-size: 1.2rem;
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  mat-toolbar button[mat-button] {
+    flex: 1;
+    min-width: 100px;
+  }
+}

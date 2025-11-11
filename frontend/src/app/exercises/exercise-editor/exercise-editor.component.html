@@ -1,0 +1,59 @@
+<div class="editor-page">
+    <div class="editor-card">
+        <h1 class="card-title">
+            <mat-icon>{{ id ? 'edit' : 'add_circle' }}</mat-icon>
+            {{ id ? 'Edit Exercise' : 'New Exercise' }}
+        </h1>
+
+        <form [formGroup]="form" (ngSubmit)="save()">
+            <div class="form-grid">
+                <mat-form-field appearance="outline">
+                    <mat-label>Name</mat-label>
+                    <input matInput formControlName="name" placeholder="Enter exercise name" />
+                    <mat-icon matPrefix>music_note</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Difficulty</mat-label>
+                    <mat-select formControlName="difficulty">
+                        <mat-option [value]="1">Easy</mat-option>
+                        <mat-option [value]="2">Medium</mat-option>
+                        <mat-option [value]="3">Hard</mat-option>
+                        <mat-option [value]="4">Expert</mat-option>
+                    </mat-select>
+                    <mat-icon matPrefix>speed</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>BPM</mat-label>
+                    <input type="number" matInput formControlName="bpm" placeholder="120" />
+                    <mat-icon matPrefix>timer</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Tuning</mat-label>
+                    <mat-select formControlName="tuningId">
+                        <mat-option *ngFor="let t of tunings" [value]="t.id">{{ t.name }}</mat-option>
+                    </mat-select>
+                    <mat-icon matPrefix>tune</mat-icon>
+                </mat-form-field>
+            </div>
+
+            <h3>🎸 Tablature Editor</h3>
+            <div class="tab-editor-container">
+                <app-tab-editor [(tabData)]="tabData"></app-tab-editor>
+            </div>
+
+            <div class="buttons">
+                <button mat-button color="warn" type="button" (click)="cancel()">
+                    <mat-icon>cancel</mat-icon>
+                    <span>Cancel</span>
+                </button>
+                <button mat-raised-button color="primary" type="submit">
+                    <mat-icon>save</mat-icon>
+                    <span>Save Exercise</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="exercise-page">
+  <header class="page-header">
+    <div class="header-left">
+      <h1>🎸 Exercises</h1>
+      <p>Manage your guitar practice sessions and tabs.</p>
+    </div>
+
+    <div class="header-right">
+      <button mat-flat-button color="accent" (click)="goBack()">
+        <mat-icon>arrow_back</mat-icon>
+        <span>Dashboard</span>
+      </button>
+      <button mat-flat-button color="primary" (click)="newItem()">
+        <mat-icon>add</mat-icon>
+        <span>New Exercise</span>
+      </button>
+    </div>
+  </header>
+
+  <section class="toolbar">
+    <mat-form-field appearance="outline" class="search-box">
+      <mat-label>Search exercises</mat-label>
+      <input matInput [(ngModel)]="filterValue" (keyup)="applyFilter()" />
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </section>
+
+  <section *ngIf="loading" class="loading">
+    <mat-spinner diameter="70"></mat-spinner>
+    <p>Loading your exercises...</p>
+  </section>
+
+  <section *ngIf="!loading && filteredItems.length" class="exercise-grid">
+    <div class="exercise-card" *ngFor="let ex of filteredItems" (click)="editItem(ex.id!)">
+      <div class="card-header">
+        <h2>{{ ex.name }}</h2>
+        <span class="chip" [ngClass]="(ex.difficultyName || '').toLowerCase()">
+          {{ ex.difficultyName }}
+        </span>
+      </div>
+
+      <p class="bpm">
+        <mat-icon class="bpm-icon">speed</mat-icon>
+        {{ ex.bpm }} BPM
+      </p>
+
+      <div class="card-actions">
+        <button mat-icon-button class="action-btn edit" matTooltip="Edit" (click)="$event.stopPropagation(); editItem(ex.id!)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button class="action-btn delete" matTooltip="Delete" (click)="deleteItem(ex.id!); $event.stopPropagation()">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section *ngIf="!loading && !filteredItems.length" class="empty">
+    <mat-icon>music_off</mat-icon>
+    <p>No exercises found</p>
+  </section>
+</div>

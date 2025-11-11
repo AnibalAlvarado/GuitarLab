@@ -1,0 +1,253 @@
+/* Container */
+.editor-page {
+  min-height: 100vh;
+  padding: 40px 80px;
+  background: linear-gradient(135deg, #1a0b2e 0%, #2e026d 50%, #4a0e78 100%);
+  color: #f0f0f0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.editor-page::before {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(138, 43, 226, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: float 20s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-30px) rotate(-5deg); }
+}
+
+/* Card Container */
+.editor-card {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 40px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.editor-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #8b5cf6, #ec4899);
+  border-radius: 24px 24px 0 0;
+}
+
+/* Title */
+.card-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin: 0 0 32px 0;
+  background: linear-gradient(135deg, #fff 0%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.5px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Form Grid */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+/* Material Form Fields */
+mat-form-field {
+  width: 100%;
+}
+
+mat-form-field .mat-mdc-form-field-wrapper {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  padding: 4px 8px;
+  transition: all 0.3s ease;
+}
+
+mat-form-field:focus-within .mat-mdc-form-field-wrapper {
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.3);
+}
+
+mat-form-field .mat-mdc-text-field-wrapper {
+  background: transparent;
+}
+
+mat-label {
+  color: #c7c7c7 !important;
+  font-weight: 500;
+}
+
+input.mat-mdc-input-element,
+.mat-mdc-select-value {
+  color: #fff !important;
+  font-weight: 500;
+}
+
+.mat-mdc-form-field-error {
+  color: #ff6b6b;
+}
+
+/* Section Headers */
+h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 40px 0 24px 0;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid rgba(139, 92, 246, 0.3);
+}
+
+/* Tab Editor Styles */
+.tab-editor-container {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 32px;
+  transition: all 0.3s ease;
+}
+
+.tab-editor-container:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(139, 92, 246, 0.3);
+}
+
+/* Buttons */
+.buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+button[mat-raised-button],
+button[mat-button] {
+  font-weight: 600;
+  border-radius: 12px;
+  padding: 12px 32px;
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+button[mat-raised-button] {
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+}
+
+button[mat-raised-button]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.5);
+}
+
+button[mat-button]:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+button mat-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .editor-page {
+    padding: 24px 20px;
+  }
+
+  .editor-card {
+    padding: 28px 20px;
+  }
+
+  .card-title {
+    font-size: 1.8rem;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .buttons {
+    flex-direction: column-reverse;
+  }
+
+  button[mat-raised-button],
+  button[mat-button] {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .editor-page {
+    padding: 20px 16px;
+  }
+
+  .editor-card {
+    padding: 24px 16px;
+  }
+
+  .card-title {
+    font-size: 1.6rem;
+  }
+}
+/* ✅ Corrige el color del texto del valor mostrado en mat-select cerrado */
+.mat-mdc-select .mdc-text-field__input,
+.mat-mdc-select-value,
+.mat-mdc-select-value-text,
+.mat-mdc-select-min-line,
+.mdc-text-field--outlined .mdc-notched-outline__notch .mdc-floating-label--float-above {
+  color: #fff !important;
+  opacity: 0.95 !important;
+  font-weight: 500 !important;
+}
+
+/* Placeholder (cuando no hay valor seleccionado) */
+.mat-mdc-select-placeholder {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* Flecha (icono del desplegable) */
+.mat-mdc-select-arrow,
+.mat-mdc-select-arrow svg {
+  color: #fff !important;
+  fill: #fff !important;
+  opacity: 0.9 !important;
+}
+
+/* Bordes violetas al enfocar */
+.mat-mdc-form-field.mat-focused .mat-mdc-form-field-outline-thick {
+  border-color: #a78bfa !important;
+  box-shadow: 0 0 6px rgba(167, 139, 250, 0.4);
+}

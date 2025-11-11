@@ -1,0 +1,99 @@
+<div class="crud-container" *ngIf="schema">
+  <div class="loading-overlay" *ngIf="loading">
+    <mat-spinner diameter="60"></mat-spinner>
+    <p>Processing...</p>
+  </div>
+
+  <mat-card class="header-card">
+    <mat-card-header>
+      <mat-card-title>{{ schema.displayName }}</mat-card-title>
+      <mat-card-subtitle>Manage your {{ entity }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions>
+      <button mat-raised-button color="accent" (click)="goBack()">
+        <mat-icon>arrow_back</mat-icon> Back
+      </button>
+      <button mat-raised-button color="primary" (click)="resetForm()">
+        <mat-icon>add</mat-icon> New {{ schema.displayName }}
+      </button>
+    </mat-card-actions>
+  </mat-card>
+
+  <div class="content">
+    <mat-card class="form-card">
+      <mat-card-title>{{ isEditing ? 'Edit' : 'Create' }} {{ schema.displayName }}</mat-card-title>
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-fields">
+          <ng-container *ngFor="let field of schema.fields">
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>{{ field.label }}</mat-label>
+              <ng-container [ngSwitch]="field.type">
+                <input *ngSwitchCase="'text'" matInput [formControlName]="field.name" />
+                <input *ngSwitchCase="'number'" type="number" matInput [formControlName]="field.name" />
+                <input *ngSwitchCase="'email'" type="email" matInput [formControlName]="field.name" />
+                <input *ngSwitchCase="'password'" type="password" matInput [formControlName]="field.name" />
+                <textarea *ngSwitchCase="'textarea'" matInput [formControlName]="field.name" rows="3"></textarea>
+                <mat-select *ngSwitchCase="'select'" [formControlName]="field.name">
+                  <mat-option *ngFor="let opt of field.options" [value]="opt.value">{{ opt.label }}</mat-option>
+                </mat-select>
+              </ng-container>
+            </mat-form-field>
+          </ng-container>
+        </div>
+
+        <mat-card-actions class="form-actions">
+          <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+            <mat-icon>{{ isEditing ? 'edit' : 'save' }}</mat-icon>
+            {{ isEditing ? 'Update' : 'Create' }}
+          </button>
+          <button mat-button type="button" (click)="resetForm()">
+            <mat-icon>cancel</mat-icon> Cancel
+          </button>
+        </mat-card-actions>
+      </form>
+    </mat-card>
+
+    <mat-card class="table-card">
+      <mat-card-title>{{ schema.displayName }} List</mat-card-title>
+
+      <mat-form-field appearance="outline" class="filter-field">
+        <mat-label>Search</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Type to filter..." />
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+
+      <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+        <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ column | titlecase }}
+          </th>
+          <td mat-cell *matCellDef="let item">
+            <ng-container *ngIf="column !== 'actions'; else actionBtns">
+              {{ item[column] ?? '-' }}
+            </ng-container>
+            <ng-template #actionBtns>
+              <button mat-icon-button color="primary" (click)="editItem(item)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" (click)="deleteItem(item.id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </ng-template>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+      <div *ngIf="!loading && !dataSource.data.length" class="no-data">
+        <mat-icon>info</mat-icon>
+        <p>No {{ entity }} found.</p>
+      </div>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="tab-editor">
+    <!-- Toolbar -->
+    <div class="tab-toolbar">
+        <button (click)="addColumns(4)">➕ Add 4 Notes</button>
+        <button (click)="addColumns(8)">➕ Add 8 Notes</button>
+        <button (click)="removeLastColumns(4)">➖ Remove 4</button>
+        <button (click)="clearAll()" class="danger">🗑️ Clear All</button>
+    </div>
+
+    <!-- 🧱 Grid editable -->
+    <div class="tab-grid-container">
+        <div class="tab-grid" *ngIf="grid.length > 0 && grid[0].length > 0">
+            <div *ngFor="let row of grid; let i = index" class="string-row">
+                <span class="string-label">{{ strings[i] }}</span>
+                <div class="string-line">
+                    <div *ngFor="let note of row; let j = index; trackBy: trackByIndex" class="fret-cell">
+                        <input [value]="grid[i][j]" (input)="onNoteChange($event, i, j)" maxlength="2"
+                            class="fret-input" placeholder="-" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🎼 VexFlow Render -->
+    <div class="vexflow-container">
+        <div #vexContainer id="vexTabCanvas"></div>
+    </div>
+
+    <!-- Info -->
+    <div class="tab-info">
+        <div class="tab-info-item"><strong>Strings:</strong> {{ strings.length }}</div>
+        <div class="tab-info-item"><strong>Columns:</strong> {{ grid[0]?.length || 0 }}</div>
+        <div class="tab-info-item"><strong>Total Notes:</strong> {{ getTotalNotes() }}</div>
+    </div>
+</div>
