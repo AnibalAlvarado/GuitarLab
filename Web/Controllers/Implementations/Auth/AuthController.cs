@@ -6,6 +6,7 @@ using Entity.Dtos.Config;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using System.Security.Claims;
 using Web.Infrastructure.Cookies.Interfaces;
 
 namespace ModelSecurity.Controllers.Implements.Auth
@@ -181,7 +182,39 @@ namespace ModelSecurity.Controllers.Implements.Auth
             return Ok(new { message = "Refresh token revocado" });
         }
 
+        /// <summary>
+        /// Retorna la información básica del usuario autenticado.
+        /// Usa el access_token (desde la cookie) validado por JWT middleware.
+        /// </summary>
+        [HttpGet("me")]
+        [Authorize]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        public async Task<IActionResult> GetCurrentUser()
+        {
+            // 1️⃣ Extraer el userId desde los claims del JWT
+            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
+            if (string.IsNullOrEmpty(userIdClaim))
+                return Unauthorized(new { message = "Usuario no autenticado" });
+
+            if (!int.TryParse(userIdClaim, out var userId))
+                return Unauthorized(new { message = "Id de usuario inválido" });
+
+            // 2️⃣ Obtener datos del usuario desde el negocio
+            var user = await _userBusiness.GetById(userId);
+            if (user == null)
+                return Unauthorized(new { message = "Usuario no encontrado" });
+
+            // 3️⃣ Retornar datos limpios (sin contraseñas ni datos sensibles)
+            return Ok(new
+            {
+                id = user.Id,
+                username = user.Username,
+                email = user.Email,
+                message = "Usuario autenticado"
+            });
+        }
 
 
     }

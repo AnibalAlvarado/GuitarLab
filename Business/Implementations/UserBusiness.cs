@@ -33,11 +33,11 @@ namespace Business.Implementations
 
         public async Task<UserDto> LoginUser(LoginRequestDto loginDto)
         {
-            User? user = await _data.GetByEmailOrUsernameAsync(loginDto.Email ?? loginDto.Username);
+            User? user = await _data.GetByEmailOrUsernameAsync(loginDto.Email);
             UserDto userDto = _mapper.Map<UserDto>(user);
             if (user == null)
             {
-                _logger.LogWarning("Intento de login fallido para usuario: {UsernameOrEmail}", loginDto.Username ?? loginDto.Email);
+                _logger.LogWarning("Intento de login fallido para usuario: {Email}", loginDto.Email);
                 throw new UnauthorizedAccessException("Credenciales inválidas");
             }
 
@@ -45,11 +45,11 @@ namespace Business.Implementations
 
             if (!valid)
             {
-                _logger.LogWarning("Contraseña incorrecta para usuario: {UsernameOrEmail}", loginDto.Username ?? loginDto.Email);
+                _logger.LogWarning("Contraseña incorrecta para usuario: {Email}", loginDto.Email);
                 throw new UnauthorizedAccessException("Credenciales inválidas");
             }
 
-            _logger.LogInformation("Inicio de sesión exitoso para usuario: {UsernameOrEmail}", user.Username);
+            _logger.LogInformation("Inicio de sesión exitoso para usuario: {Email}", user.Email);
             return userDto;
         }
 
@@ -101,6 +101,11 @@ namespace Business.Implementations
             {
                 throw new BusinessException($"Error en el registro del usuario: {ex.Message}", ex);
             }
+        }
+
+        public async Task<IEnumerable<UserDto>> GetAllJoinAsync()
+        {
+            return await _data.GetAllJoinAsync();
         }
 
     }

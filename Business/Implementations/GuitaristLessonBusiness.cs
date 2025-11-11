@@ -24,8 +24,8 @@ namespace Business.Implementations
 
         public async Task<IEnumerable<GuitaristLessonDto>> GetAllJoinAsync()
         {
-            var entities = await _data.GetAllJoinAsync();
-            return _mapper.Map<IEnumerable<GuitaristLessonDto>>(entities);
+            IEnumerable<GuitaristLessonDto> entities = await _data.GetAllJoinAsync();
+            return entities;
         }
 
     }

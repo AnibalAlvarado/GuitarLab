@@ -12,5 +12,6 @@ namespace Business.Interfaces
     {
         Task<UserDto> LoginUser(LoginRequestDto loginDto);
         Task<UserDto> RegisterAsync(RegisterRequestDto dto);
+        Task<IEnumerable<UserDto>> GetAllJoinAsync();
     }
 }

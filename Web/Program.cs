@@ -69,10 +69,22 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
+// 3️⃣ HTTPS
 app.UseHttpsRedirection();
-app.UseAuthentication();
+
+// 4️⃣ CORS → siempre **antes de Authentication**
+// para permitir cookies y headers cross-site
 app.UseCors();
+
+// 5️⃣ Autenticación (JWT + cookies)
+app.UseAuthentication();
+
+// 6️⃣ Autorización (policies, roles, etc.)
 app.UseAuthorization();
+
+// 7️⃣ Ruteo
 app.MapControllers();
+
+// 8️⃣ Ejecutar
 app.Run();
 

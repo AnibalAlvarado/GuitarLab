@@ -19,5 +19,10 @@ namespace Business.Implementations
         {
             _data = data;
         }
+
+        public async Task<IEnumerable<LessonDto>> GetAllJoinAsync()
+        {
+            return await _data.GetAllJoinAsync();
+        }
     }
 }

@@ -10,5 +10,6 @@ namespace Data.Interfaces
 {
     public interface ILessonData : IRepositoryData<Lesson>
     {
+        Task<IEnumerable<LessonDto>> GetAllJoinAsync();
     }
 }

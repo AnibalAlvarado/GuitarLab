@@ -1,11 +1,13 @@
 ﻿using AutoMapper;
 using Data.Interfaces;
 using Entity.Contexts;
+using Entity.Dtos;
 using Entity.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,12 +24,39 @@ namespace Data.Implementations
 
         }
 
-        public async Task<IEnumerable<LessonExercise>> GetAllJoinAsync()
+        public async Task<IEnumerable<LessonExerciseDto>> GetAllJoinAsync()
         {
-            return await _context.LessonExercises
-                .Include(x => x.Lesson)
-                .Include(x => x.Exercise)
-                .ToListAsync();
+            try
+            {
+                var lst = await _context.LessonExercises
+                    .Where(x => !x.IsDeleted)
+                    .Include(x => x.Lesson)
+                    .Include(x => x.Exercise)
+                    .Select(x => new LessonExerciseDto
+                    {
+                        Id = x.Id,
+                        LessonId = x.LessonId,
+                        ExerciseId = x.ExerciseId,
+
+                        // 🔹 Solo los distintos
+                        Lesson =  x.Lesson.Name ?? "" ,
+                        Exercise =  x.Exercise.Name ?? "" 
+                    })
+                    .ToListAsync();
+
+                return lst;
+            }
+            catch (DbException ex)
+            {
+                Console.WriteLine($"Database error: {ex.Message}");
+                throw;
+            }
+            catch (DbUpdateException ex)
+            {
+                Console.WriteLine($"EF update error: {ex.InnerException?.Message}");
+                throw;
+            }
         }
+
     }
 }

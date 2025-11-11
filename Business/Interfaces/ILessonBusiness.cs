@@ -10,5 +10,6 @@ namespace Business.Interfaces
 {
     public interface ILessonBusiness : IRepositoryBusiness<Lesson, LessonDto>
     {
+        Task<IEnumerable<LessonDto>> GetAllJoinAsync();
     }
 }

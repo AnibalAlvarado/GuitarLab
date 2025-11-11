@@ -1,12 +1,14 @@
 ﻿using AutoMapper;
 using Data.Interfaces;
 using Entity.Contexts;
+using Entity.Dtos;
 using Entity.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,15 +28,43 @@ namespace Data.Implementations
             _logger = logger;
         }
 
-        public async Task<IEnumerable<GuitaristLesson>> GetAllJoinAsync()
+        public async Task<IEnumerable<GuitaristLessonDto>> GetAllJoinAsync()
         {
-            //await AuditAsync("GetAllJoinAsync");
+            try
+            {
+                var lst = await _context.GuitaristLessons
+                    .Where(x => !x.IsDeleted)
+                    .Include(x => x.Guitarist)
+                    .Include(x => x.Lesson)
+                    .Select(x => new GuitaristLessonDto
+                    {
+                        // 🔹 Campos que se copian tal cual (mismo nombre y tipo)
+                        Id = x.Id,
+                        GuitaristId = x.GuitaristId,
+                        LessonId = x.LessonId,
+                        Status = x.Status,
+                        ProgressPercent = x.ProgressPercent,
 
-            return await _context.GuitaristLessons
-                .Include(x => x.Guitarist)
-                .Include(x => x.Lesson)
-                .ToListAsync();
+                        // 🔹 Solo se mapean los diferentes
+                        Guitarist = x.Guitarist.Name ?? "",
+                        Lesson = x.Lesson.Name ?? ""
+                    })
+                    .ToListAsync();
+
+                return lst;
+            }
+            catch (DbException ex)
+            {
+                Console.WriteLine("Database error: " + ex.Message);
+                throw;
+            }
+            catch (DbUpdateException ex)
+            {
+                Console.WriteLine("EF update error: " + ex.InnerException?.Message);
+                throw;
+            }
         }
+
         public override async Task<GuitaristLesson> GetById(int id)
         {
             //await AuditAsync("GetById", id);

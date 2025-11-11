@@ -10,6 +10,6 @@ namespace Data.Interfaces
 {
     public interface IGuitaristLessonData : IRepositoryData<GuitaristLesson>
     {
-        public Task<IEnumerable<GuitaristLesson>> GetAllJoinAsync();
+        public Task<IEnumerable<GuitaristLessonDto>> GetAllJoinAsync();
     }
 }

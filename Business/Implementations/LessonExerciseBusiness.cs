@@ -25,8 +25,8 @@ namespace Business.Implementations
 
         public async Task<IEnumerable<LessonExerciseDto>> GetAllJoinAsync()
         {
-            var entities = await _data.GetAllJoinAsync();
-            return _mapper.Map<IEnumerable<LessonExerciseDto>>(entities);
+            IEnumerable<LessonExerciseDto> entities = await _data.GetAllJoinAsync();
+            return entities;
         }
 
     }

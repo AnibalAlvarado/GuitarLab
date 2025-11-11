@@ -12,10 +12,32 @@ namespace Web.Controllers.Implementations
 
     public class UserController : RepositoryController<User, UserDto>
     {
-      
+        private readonly IUserBusiness _business;
         public UserController(IUserBusiness business )
             : base(business)
         {
+            _business = business;
+        }
+
+        [HttpGet("join")]
+        public async Task<ActionResult<IEnumerable<UserDto>>> GetAllJoin()
+        {
+            try
+            {
+                IEnumerable<UserDto> data = await _business.GetAllJoinAsync();
+                if (data == null || !data.Any())
+                {
+                    var responseNull = new ApiResponse<IEnumerable<UserDto>>(null, false, "Registro no encontrado", null);
+                    return NotFound(responseNull);
+                }
+                var response = new ApiResponse<IEnumerable<UserDto>>(data, true, "Ok", null);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                var response = new ApiResponse<IEnumerable<UserDto>>(null, false, ex.Message.ToString(), null);
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
         }
     }
 

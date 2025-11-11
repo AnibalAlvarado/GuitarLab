@@ -12,5 +12,6 @@ namespace Data.Interfaces
     public interface IUserData : IRepositoryData<User>
     {
         Task<User?> GetByEmailOrUsernameAsync(string emailOrUsername);
+        Task<IEnumerable<UserDto>> GetAllJoinAsync();
     }
 }

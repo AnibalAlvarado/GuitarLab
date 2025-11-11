@@ -15,7 +15,7 @@ namespace Utilities.Implementations
 
         public AutoMapperProfiles() : base()
         {
-         
+
 
             // Ejemplo de mapeo
             CreateMap<Exercise, ExerciseDto>().ReverseMap();
