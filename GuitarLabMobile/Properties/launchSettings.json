@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "Windows Machine": {
+      "commandName": "Project",
+      "nativeDebugging": false
+    },
+    "Perfil 1": {
+      "commandName": "Executable"
+    },
+    "Perfil 2": {
+      "commandName": "Project"
+    }
+  }
+}

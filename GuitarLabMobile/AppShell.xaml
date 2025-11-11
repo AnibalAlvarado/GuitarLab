@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="GuitarLabMobile.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:GuitarLabMobile"
+    xmlns:views="clr-namespace:GuitarLabMobile.Views"
+    Title="GuitarLabMobile">
+
+    <ShellContent
+        Title="Login"
+        ContentTemplate="{DataTemplate views:LoginPage}"
+        Route="LoginPage" />
+
+    <ShellContent
+        Title="Lessons"
+        ContentTemplate="{DataTemplate views:LessonsPage}"
+        Route="LessonsPage" />
+
+    <ShellContent
+        Title="Exercises"
+        ContentTemplate="{DataTemplate views:ExercisesPage}"
+        Route="ExercisesPage" />
+
+    <ShellContent
+        Title="Exercise Detail"
+        ContentTemplate="{DataTemplate views:ExerciseDetailPage}"
+        Route="ExerciseDetailPage" />
+
+</Shell>
